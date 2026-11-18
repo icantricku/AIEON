@@ -1,0 +1,2920 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>AIEON</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f9eef5;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --bg: #2a0d24;
+        }
+      }
+      :root[data-theme="dark"] {
+        --bg: #2a0d24;
+      }
+      html {
+        scroll-padding-top: env(safe-area-inset-top, 0px);
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        height: 100%;
+        background: var(--bg);
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        font-family:
+          Inter, "Noto Sans", "Hiragino Sans", "Yu Gothic", "Malgun Gothic",
+          "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      button,
+      input,
+      select {
+        font: inherit;
+        cursor: pointer;
+      }
+      button:focus-visible,
+      input:focus-visible,
+      select:focus-visible {
+        outline: 3px solid #b2198b;
+        outline-offset: 2px;
+      }
+      #st {
+        width: 960px;
+        height: 540px;
+        flex: none;
+        position: relative;
+        overflow: hidden;
+        background: #f9eef5;
+        color: #3a1030;
+        border-radius: 18px;
+        color-scheme: light;
+      }
+      #sc {
+        position: absolute;
+        inset: 0;
+        display: flex;
+      }
+      input {
+        cursor: text;
+      }
+      .fi {
+        width: 100%;
+        height: 48px;
+        border: 1px solid #e6b9d5;
+        border-radius: 14px;
+        background: #fff;
+        color: #3a1030;
+        -webkit-text-fill-color: #3a1030;
+        caret-color: #b2198b;
+        padding: 0 14px;
+        font-size: 16px;
+      }
+      .fi::placeholder {
+        color: #6b4a62;
+        -webkit-text-fill-color: #6b4a62;
+        opacity: 1;
+      }
+      .fi:focus {
+        border: 2px solid #b2198b;
+      }
+      #lg {
+        position: absolute;
+        right: 90px;
+        bottom: 20px;
+        height: 44px;
+        border-radius: 22px;
+        border: 1px solid #e6b9d5;
+        background: #fff;
+        color: #3a1030;
+        padding: 0 12px;
+        font-size: 13px;
+        font-weight: 600;
+        z-index: 5;
+      }
+      .b {
+        background: #b2198b;
+        color: #fff;
+        border: 0;
+        border-radius: 14px;
+        min-height: 48px;
+        padding: 0 20px;
+        font-weight: 600;
+        font-size: 15px;
+      }
+      .g {
+        background: #fff;
+        color: #8a1269;
+        border: 1px solid #e6b9d5;
+        border-radius: 14px;
+        min-height: 48px;
+        padding: 0 20px;
+        font-weight: 600;
+        font-size: 15px;
+      }
+      .sb {
+        min-height: 44px;
+        padding: 0 14px;
+        font-size: 13px;
+      }
+      .i {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 0;
+        background: #fff;
+        color: #8a1269;
+        font-size: 22px;
+        display: grid;
+        place-items: center;
+        box-shadow: 0 2px 8px #3a103022;
+        flex: none;
+      }
+      .o {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: #f9eef5;
+        display: grid;
+        place-items: center;
+        flex: none;
+      }
+      .t {
+        background: #fff;
+        border: 1px solid #e6b9d5;
+        border-radius: 18px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+        text-align: left;
+        color: #3a1030;
+        font-size: 16px;
+        font-weight: 600;
+        height: 108px;
+      }
+      .sm {
+        font-weight: 400;
+        font-size: 13px;
+        color: #6b4a62;
+      }
+      .c {
+        background: #f9eef5;
+        border-radius: 16px;
+        padding: 14px;
+      }
+      .n {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #b2198b;
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-size: 13px;
+        font-weight: 700;
+        flex: none;
+      }
+      .rw {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .cd {
+        background: #fff;
+        border: 1px solid #e6b9d5;
+        border-radius: 16px;
+        padding: 10px 14px;
+      }
+      .v {
+        width: 96px;
+        min-height: 56px;
+        border: 0;
+        border-radius: 14px;
+        background: #fff;
+        color: #3a1030;
+        font-weight: 600;
+        font-size: 12px;
+        box-shadow: 0 2px 8px #3a103022;
+      }
+      .v.a {
+        background: #b2198b;
+        color: #fff;
+      }
+      .fab {
+        position: absolute;
+        right: 16px;
+        bottom: 16px;
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        border: 3px solid #b2198b;
+        background: #fff;
+        display: grid;
+        place-items: center;
+        box-shadow: 0 4px 14px #3a103040;
+        z-index: 5;
+        padding: 0;
+      }
+      .pn {
+        position: absolute;
+        right: 16px;
+        bottom: 90px;
+        width: 340px;
+        height: 390px;
+        background: #fff;
+        border: 1px solid #e6b9d5;
+        border-radius: 20px;
+        box-shadow: 0 8px 28px #3a103040;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        z-index: 5;
+      }
+      .pn[hidden] {
+        display: none;
+      }
+      .pn:not([hidden]) {
+        animation: pop 0.22s ease-out;
+        transform-origin: 100% 100%;
+      }
+      .bm {
+        animation: up 0.2s ease-out;
+      }
+      .b,
+      .g,
+      .i,
+      .v,
+      .t,
+      .fab,
+      .ch button {
+        transition:
+          transform 0.12s ease,
+          box-shadow 0.15s ease,
+          background-color 0.15s ease;
+      }
+      .b:active,
+      .g:active,
+      .i:active,
+      .v:active,
+      .t:active,
+      .fab:active {
+        transform: scale(0.96);
+      }
+      .t:hover {
+        box-shadow: 0 4px 12px #3a103022;
+      }
+      .dr {
+        stroke-dasharray: 1;
+        stroke-dashoffset: 1;
+        animation: dr 1.1s 0.3s ease-out forwards;
+      }
+      @keyframes dr {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+      @keyframes fade {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes pop {
+        from {
+          opacity: 0;
+          transform: scale(0.94);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @keyframes up {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          animation-delay: 0s !important;
+          transition: none !important;
+        }
+      }
+      .hd {
+        background: #b2198b;
+        color: #fff;
+        padding: 10px 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .ms {
+        flex: 1;
+        overflow: auto;
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .bm {
+        max-width: 85%;
+        padding: 9px 12px;
+        border-radius: 14px;
+        font-size: 14px;
+        line-height: 1.35;
+      }
+      .bm.a {
+        background: #f9eef5;
+        align-self: flex-start;
+      }
+      .bm.u {
+        background: #b2198b;
+        color: #fff;
+        align-self: flex-end;
+      }
+      .ch {
+        display: flex;
+        gap: 6px;
+        padding: 0 12px 8px;
+        flex-wrap: wrap;
+      }
+      .ch button {
+        border: 0;
+        background: #e6b9d5;
+        color: #3a1030;
+        border-radius: 18px;
+        padding: 0 12px;
+        min-height: 36px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .in {
+        display: flex;
+        gap: 8px;
+        padding: 10px;
+        border-top: 1px solid #e6b9d5;
+      }
+      .in .fi {
+        flex: 1;
+        min-width: 0;
+        height: 44px;
+        border-radius: 22px;
+        font-size: 14px;
+      }
+      .sk {
+        position: absolute;
+        bottom: 96px;
+        width: 112px;
+        height: 112px;
+        border-radius: 50%;
+        background: #ffffffb8;
+        border: 2px solid #fff;
+        box-shadow: 0 4px 14px #3a103040;
+        touch-action: none;
+        user-select: none;
+        display: grid;
+        place-items: center;
+      }
+      .sk div {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: #b2198b;
+        border: 3px solid #fff;
+        pointer-events: none;
+      }
+      .lb {
+        position: absolute;
+        bottom: 214px;
+        width: 112px;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 600;
+        color: #fff;
+        background: #3a1030cc;
+        border-radius: 10px;
+        padding: 3px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="st">
+      <div id="sc"></div>
+      <div id="ai"></div>
+      <select id="lg" aria-label="Language"></select>
+      <div
+        id="wn"
+        role="alert"
+        style="
+          display: none;
+          position: absolute;
+          left: 50%;
+          top: 16px;
+          transform: translateX(-50%);
+          z-index: 8;
+          background: #fff;
+          border: 2px solid #b2198b;
+          border-radius: 18px;
+          padding: 12px 16px;
+          gap: 16px;
+          align-items: center;
+          box-shadow: 0 8px 24px #3a103050;
+          white-space: nowrap;
+        "
+      ></div>
+      <div
+        id="tt"
+        style="
+          position: absolute;
+          left: 50%;
+          bottom: 24px;
+          transform: translateX(-50%);
+          background: #3a1030;
+          color: #fff;
+          padding: 10px 18px;
+          border-radius: 20px;
+          font-size: 14px;
+          opacity: 0;
+          transition: opacity 0.2s;
+          z-index: 6;
+          pointer-events: none;
+          white-space: nowrap;
+        "
+      ></div>
+    </div>
+    <script>
+      const $ = (s) => document.querySelector(s),
+        fmt = (n) => n.toLocaleString("en-US") + "₫",
+        h = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+      const LG = ["vi", "en", "ja", "ko", "zh"],
+        LN = ["Tiếng Việt", "English", "日本語", "한국어", "中文"],
+        LE = ["Vietnamese", "English", "Japanese", "Korean", "Chinese"];
+      let L = 1;
+      /* texts: vi|en|ja|ko|zh */
+      const T = {
+        hi: "Xin chào!|Hi!|こんにちは！|안녕하세요!|你好！",
+        hiS: "Đăng nhập để mua sắm cùng AIEON.|Sign in to start shopping with AIEON.|サインインしてAIEONでお買い物を始めましょう。|로그인하고 AIEON과 쇼핑을 시작하세요.|登录后即可开始使用AIEON购物。",
+        idp: "Số điện thoại|Phone number|電話番号|전화번호|手机号",
+        pinp: "Mật khẩu|Password|パスワード|비밀번호|密码",
+        sin: "Đăng nhập|Sign in|サインイン|로그인|登录",
+        gst: "Tiếp tục với tư cách khách|Continue as guest|ゲストで続ける|게스트로 계속|以访客身份继续",
+        bad: "Nhập số điện thoại (9–11 chữ số) và mật khẩu (từ 4 ký tự).|Enter your phone number (9–11 digits) and a password (4+ characters).|電話番号（9〜11桁）と4文字以上のパスワードを入力してください。|전화번호(9~11자리)와 4자 이상의 비밀번호를 입력하세요.|请输入手机号（9–11位）和至少4位密码。",
+        fpw: "Quên mật khẩu?|Forgot Password?|パスワードをお忘れですか？|비밀번호를 잊으셨나요?|忘记密码？",
+        fpwM: "Hướng dẫn đặt lại mật khẩu sẽ được gửi qua SMS đến số điện thoại của bạn.|Password reset instructions will be sent to your phone by SMS.|パスワード再設定の案内をSMSでお送りします。|비밀번호 재설정 안내를 SMS로 보내드립니다.|重置密码的说明将通过短信发送到您的手机。",
+        wel: "Chào mừng! Hôm nay bạn muốn mua gì?|Welcome! What are we shopping for today?|ようこそ！今日は何をお探しですか？|환영합니다! 오늘은 무엇을 사실까요?|欢迎！今天想买点什么？",
+        welS: "Tìm kiếm bên dưới hoặc chạm vào Pip để hỏi.|Search below, or tap Pip in the corner and just ask.|下で検索するか、Pipに話しかけてください。|아래에서 검색하거나 Pip에게 물어보세요.|在下方搜索，或点击Pip直接提问。",
+        cartB:
+          "Giỏ hàng · {0} món|My cart · {0} items|カート · {0}点|장바구니 · {0}개|购物车 · {0}件",
+        sph: "Tìm sản phẩm hoặc quầy hàng|Search products or aisles|商品や売り場を検索|상품 또는 매장 검색|搜索商品或区域",
+        dep: "Danh mục|Departments|売り場|매장|分类",
+        rec: "Gần đây|Recent|最近|최근|最近",
+        res: "Kết quả|Results|検索結果|검색 결과|结果",
+        clr: "Xoá|Clear|クリア|지우기|清除",
+        none: "Chưa có kết quả. Hãy hỏi Pip!|No match yet. Try asking Pip!|見つかりません。Pipに聞いてみて！|결과가 없습니다. Pip에게 물어보세요!|没有结果，问问Pip吧！",
+        add: "Thêm|Add|追加|담기|加入",
+        guide: "Dẫn đường|Guide me|案内|안내|带我去",
+        aisle: "Quầy {0}|Aisle {0}|通路 {0}|{0}번 통로|{0}号通道",
+        straight: "Đi thẳng|Go straight|直進|직진|直行",
+        right: "Rẽ phải|Turn right|右折|우회전|右转",
+        left: "Rẽ trái|Turn left|左折|좌회전|左转",
+        around: "Quay lại|Turn around|引き返す|뒤로 돌기|掉头",
+        arrive: "Đã đến!|Arrive!|到着！|도착!|到达！",
+        here: "Bạn đang ở đây!|You’re here!|現在地です！|여기에 있습니다!|您已在此！",
+        inm: "{1} sau {0} m!|{1} in {0} m!|{0}m先で{1}！|{0}m 앞에서 {1}!|{0}米后{1}！",
+        arrIn:
+          "Đến nơi sau {0} m!|Arrive in {0} m!|あと{0}mで到着！|{0}m 후 도착!|{0}米后到达！",
+        minm: "{0} phút · {1} m|{0} min · {1} m|{0}分 · {1}m|{0}분 · {1}m|{0}分钟 · {1}米",
+        remain:
+          "Còn {0} m đến {1}|{0} m left to {1}|{1}まであと{0}m|{1}까지 {0}m 남음|距{1}还有{0}米",
+        cart: "Giỏ hàng|My cart|カート|장바구니|购物车",
+        items: "{0} món|{0} items|{0}点|{0}개|{0}件",
+        sub: "Tạm tính|Subtotal|小計|소계|小计",
+        save: "Ưu đãi thành viên|Member savings|会員割引|회원 할인|会员优惠",
+        total: "Tổng cộng|Total|合計|합계|合计",
+        checkout: "Thanh toán|Go to checkout|お会計へ|결제하기|去结账",
+        keep: "Tiếp tục mua sắm|Keep shopping|買い物を続ける|쇼핑 계속|继续购物",
+        empty:
+          "Giỏ hàng trống. Hãy nhờ Pip thêm món!|Your cart is empty. Ask Pip to add something!|カートは空です。Pipに追加をお願いしましょう！|장바구니가 비었습니다. Pip에게 담아 달라고 하세요!|购物车是空的，让Pip帮你添加吧！",
+        payT: "Thanh toán tại xe đẩy|Pay at the cart|カートで支払い|카트에서 결제|在购物车支付",
+        payNow: "Thanh toán ngay|Pay now|今すぐ支払う|지금 결제|立即支付",
+        back: "Quay lại giỏ hàng|Back to cart|カートに戻る|장바구니로|返回购物车",
+        thanks:
+          "Cảm ơn bạn!|Thank you!|ありがとうございました！|감사합니다!|谢谢！",
+        rcpt: "Hoá đơn đã được gửi. Hẹn gặp lại!|Your receipt has been sent. See you next time.|レシートを送信しました。またお越しください。|영수증을 보냈습니다. 또 오세요!|收据已发送，欢迎再来！",
+        newT: "Chuyến mua sắm mới|New shopping trip|新しいお買い物|새 쇼핑 시작|开始新的购物",
+        arrived: "Tôi đã đến nơi|I’ve arrived|到着しました|도착했어요|我到了",
+        change:
+          "Đổi điểm đến|Change destination|目的地を変更|목적지 변경|更改目的地",
+        addC: "+ Giỏ|+ Cart|+ カート|+ 담기|+ 购物车",
+        end: "Kết thúc|End guide|案内を終了|안내 종료|结束导航",
+        v3d: "Xem 3D|3D View|3D表示|3D 보기|3D视图",
+        vtop: "Từ trên cao|Top View|真上表示|위에서 보기|俯视图",
+        vfp: "Góc nhìn thứ nhất|First-person|一人称|1인칭|第一人称",
+        tAdd: "Đã thêm {0}|Added {0}|{0}を追加しました|{0} 담았어요|已添加{0}",
+        tUpd: "Đã cập nhật {0}|Updated {0}|{0}を更新しました|{0} 수정됨|已更新{0}",
+        tArr: "Bạn đã đến {0}|You’ve arrived at {0}|{0}に到着しました|{0}에 도착했어요|已到达{0}",
+        tapAdd: "+ Thêm {0}|+ Add {0}|＋ {0}を追加|＋ {0} 담기|＋ 添加{0}",
+        lock: "Khoá màn hình|Lock screen|画面ロック|화면 잠금|锁定屏幕",
+        mv: "Di chuyển|Move|移動|이동|移动",
+        lk: "Nhìn quanh|Look|視点|시점|视角",
+        pipSub:
+          "Trợ lý cửa hàng|Store assistant|店内アシスタント|매장 도우미|店内助手",
+        pipPh:
+          "Hỏi Pip bất cứ điều gì…|Ask Pip anything…|Pipに何でも聞いてね…|Pip에게 무엇이든 물어보세요…|问问Pip吧…",
+        send: "Gửi|Send|送信|보내기|发送",
+        opn: "Mở trợ lý|Open assistant|アシスタントを開く|도우미 열기|打开助手",
+        cls: "Đóng|Close|閉じる|닫기|关闭",
+        pipHi:
+          "Chào bạn, mình là Pip! Mình có thể tìm sản phẩm, dẫn đường, quản lý giỏ hàng và mở thanh toán. Bạn cần gì?|Hi, I’m Pip! I can find products, guide you through the store, manage your cart and open checkout. What do you need?|Pipです！商品探し、店内案内、カート管理、お会計をお手伝いします。何をお探しですか？|저는 Pip예요! 상품 찾기, 매장 안내, 장바구니 관리, 결제를 도와드려요. 무엇이 필요하세요?|我是Pip！可以帮你找商品、导航、管理购物车和结账。需要什么？",
+        c1: "Sữa ở đâu?|Where is milk?|牛乳はどこ？|우유는 어디 있어요?|牛奶在哪里？",
+        c2: "Thêm trứng vào giỏ|Add eggs to my cart|卵をカートに入れて|계란을 담아 줘|把鸡蛋加入购物车",
+        c3: "Xem giỏ hàng|Show my cart|カートを見せて|장바구니 보여줘|查看购物车",
+        c4: "Dẫn tôi đến bánh mì|Take me to bread|パンの所へ案内して|빵 코너로 안내해 줘|带我去面包区",
+        lNo: "Mình có thể tìm sản phẩm, dẫn đường, quản lý giỏ hàng và đổi chế độ xem. Thử hỏi “Sữa ở đâu?”|I can find products, guide you there, manage your cart and switch views. Try “Where is milk?”|商品探し、案内、カート管理、表示切替ができます。「牛乳はどこ？」と聞いてみて！|상품 찾기, 안내, 장바구니 관리, 보기 전환을 할 수 있어요. “우유는 어디 있어요?”라고 물어보세요.|我可以找商品、导航、管理购物车和切换视图。试试问“牛奶在哪里？”",
+        lPay: "Đang mở thanh toán. Tổng cộng {0}.|Opening checkout. Your total is {0}.|お会計を開きます。合計は{0}です。|결제를 엽니다. 합계는 {0}입니다.|正在打开结账，合计{0}。",
+        lRem: "Đã xoá {0} khỏi giỏ.|Removed {0} from your cart.|{0}をカートから削除しました。|{0}을(를) 장바구니에서 뺐어요.|已从购物车移除{0}。",
+        lAdd: "Đã thêm {0} vào giỏ.|Added {0} to your cart.|{0}をカートに入れました。|{0}을(를) 담았어요.|已将{0}加入购物车。",
+        lCart:
+          "Giỏ có {0} món, tổng {1}.|Your cart has {0} items, total {1}.|カートは{0}点、合計{1}です。|장바구니에 {0}개, 합계 {1}입니다.|购物车有{0}件，合计{1}。",
+        lFp: "Đã chuyển sang góc nhìn thứ nhất.|Switched to first-person view.|一人称表示に切り替えました。|1인칭 보기로 전환했어요.|已切换到第一人称视图。",
+        l3d: "Đã bật bản đồ 3D.|3D map view on.|3Dマップにしました。|3D 지도를 켰어요.|已开启3D地图。",
+        lTop: "Đang hiển thị bản đồ từ trên cao.|Showing the top-down map.|真上マップを表示します。|위에서 본 지도를 보여드려요.|正在显示俯视地图。",
+        lHome:
+          "Đã quay về màn hình chính.|Back to the home screen.|ホームに戻りました。|홈 화면으로 돌아왔어요.|已返回主页。",
+        lGo: "{0} ở quầy {1}, cách khoảng {2} m ({3} phút).|{0} is in aisle {1}, about {2} m away ({3} min).|{0}は{1}番通路、約{2}m（{3}分）です。|{0}은(는) {1}번 통로, 약 {2}m({3}분)입니다.|{0}在{1}号通道，约{2}米（{3}分钟）。",
+        so: "Đăng xuất|Sign out|サインアウト|로그아웃|退出登录",
+        idleW:
+          "Bạn sắp bị đăng xuất|You are about to log out|まもなくログアウトされます|곧 로그아웃됩니다|您即将退出登录",
+        idleN:
+          "Tự động đăng xuất sau {0} giây|Signing out in {0}s|{0}秒後にサインアウトします|{0}초 후 로그아웃|{0}秒后自动退出",
+        idleS:
+          "Tiếp tục sử dụng|Stay signed in|ログインを続ける|계속 사용|继续使用",
+        idleOut:
+          "Đã đăng xuất do không hoạt động.|You were signed out due to inactivity.|操作がなかったためサインアウトしました。|활동이 없어 로그아웃되었습니다.|因长时间未操作，已退出登录。",
+        sug: "Gợi ý|Suggestions|候補|추천|推荐",
+        payQ: "Bạn muốn thanh toán ở đâu?|How would you like to pay?|お支払い方法を選んでください|결제 방법을 선택하세요|请选择支付方式",
+        payCart:
+          "Thanh toán tại xe đẩy|Pay at the cart|カートで支払う|카트에서 결제|在购物车支付",
+        payCartS:
+          "Thanh toán ngay trên màn hình này|Pay right here on this screen|この画面でそのまま支払い|이 화면에서 바로 결제|直接在此屏幕支付",
+        payCnt:
+          "Thanh toán tại quầy thu ngân|Pay at checkout counter|レジカウンターで支払う|계산대에서 결제|在收银台支付",
+        payCntS:
+          "Đưa mã cho thu ngân|Show your code to the cashier|コードをレジで提示|계산원에게 코드 제시|向收银员出示代码",
+        cntT: "Vui lòng đến quầy thu ngân|Please go to a checkout counter|レジカウンターへお進みください|계산대로 가 주세요|请前往收银台",
+        cntS: "Đưa mã này cho thu ngân. Giỏ hàng của bạn đã được gửi.|Show this code to the cashier. Your cart has been sent.|このコードをレジで提示してください。カートは送信済みです。|계산원에게 이 코드를 보여주세요. 장바구니가 전송되었습니다.|请向收银员出示此代码，您的购物车已发送。",
+        done: "Xong|Done|完了|완료|完成",
+        stT: "Hệ thống AEON Việt Nam|AEON stores in Vietnam|ベトナムのAEON店舗|베트남 AEON 매장|越南AEON门店",
+        stFind:
+          "Tìm AEON gần bạn|Find AEON near you|お近くのAEONを探す|가까운 AEON 찾기|查找附近的AEON",
+        stAllC:
+          "Tất cả tỉnh/thành phố|All provinces / cities|すべての都市|전체 지역|所有省市",
+        stAllT:
+          "Tất cả loại hình|All store types|すべての店舗タイプ|전체 매장 유형|所有门店类型",
+        stSrch: "Tìm kiếm|Search|検索|검색|搜索",
+        stNo: "Không tìm thấy cửa hàng.|No stores found.|店舗が見つかりません。|매장을 찾을 수 없습니다.|未找到门店。",
+        stCt: "{0} cửa hàng|{0} stores|{0}店舗|{0}개 매장|{0}家门店",
+        pl: "Phát|Play|再生|재생|播放",
+        ps: "Tạm dừng|Pause|一時停止|일시정지|暂停",
+        rp: "Phát lại|Replay|もう一度|다시 보기|重播",
+        sp: "Tốc độ|Speed|速度|속도|速度",
+      };
+      const t = (k, ...a) =>
+        T[k].split("|")[L].replace(/\{(\d)\}/g, (_, i) => a[i]);
+      const SK =
+        'stroke="#B2198B" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"';
+      const IC = [
+        '<circle cx="14" cy="16" r="8"/><path d="M14 8c0-3 2-5 4-5"/>',
+        '<path d="M4 14c4-7 14-9 20-4-2 8-12 12-20 4z"/>',
+        '<path d="M3 14c4-6 10-6 14 0-4 6-10 6-14 0zM17 14l6-4v8z"/>',
+        '<path d="M14 3v22M5 8l18 12M5 20L23 8"/>',
+        '<path d="M9 4h10l2 5v14H7V9z"/><path d="M7 9h14"/>',
+        '<path d="M8 4h12l-1 20H9z"/><path d="M8 11h12"/>',
+        '<path d="M4 18c0-6 5-10 10-10s10 4 10 10v3H4z"/>',
+        '<rect x="8" y="9" width="12" height="15" rx="3"/><path d="M9 5h10v4H9z"/>',
+        '<path d="M14 4l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/>',
+        '<path d="M4 13l10-9 10 9M7 12v11h14V12"/>',
+        '<path d="M11 4h6v4h3v16H8V8h3z"/>',
+        '<path d="M4 13h20c0 6-4 10-10 10S4 19 4 13zM9 9c0-2 2-2 2-4M15 9c0-2 2-2 2-4"/>',
+        '<path d="M6 9h13v8a5 5 0 01-5 5h-3a5 5 0 01-5-5zM19 11h2a3 3 0 010 6h-2M9 4v2M13 4v2"/>',
+        '<circle cx="14" cy="12" r="3"/><path d="M14 9V4M14 15v9M11 12H5M17 12h6"/>',
+      ];
+      const ic = (d) =>
+        `<svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" ${SK}>${IC[d]}</svg>`;
+      const BG = [
+        "#f5e9a8",
+        "#f4cfc4",
+        "#d9e8f4",
+        "#cfeee9",
+        "#dcecf5",
+        "#f6e1b8",
+        "#f1dcc0",
+        "#f2d3c6",
+        "#f9d2e5",
+        "#e4e8ec",
+        "#d5ecd9",
+        "#f9e4c4",
+        "#e8d9c8",
+        "#e6f1c8",
+      ];
+      const chick = (s = 56) =>
+        `<svg width="${s}" height="${s}" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="30" r="20" fill="#ffd23f"/><path d="M23 11c0-5 7-5 7 0" stroke="#e0a800" fill="none" stroke-width="3" stroke-linecap="round"/><circle cx="21" cy="27" r="3" fill="#3a1030"/><circle cx="35" cy="27" r="3" fill="#3a1030"/><path d="M24 33l4 4 4-4z" fill="#f08a24"/></svg>`;
+      const PIN =
+        '<svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path d="M13 24C6 15 4 12 4 9a9 9 0 0118 0c0 3-2 6-9 15z" fill="#B2198B"/><circle cx="13" cy="9" r="3.5" fill="#fff"/></svg>';
+      const HOME = `<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" ${SK}><path d="M3 11l9-8 9 8M6 10v10h12V10"/></svg>`;
+      const SOUT = `<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" ${SK}><path d="M9 4H5v16h4M16 8l4 4-4 4M20 12H9"/></svg>`;
+      const I24 = (d) =>
+        `<svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" ${SK}>${d}</svg>`;
+      /* AEON-style logo: slash-A joined to E, ring swoosh, round O, N + slogan beneath */
+      const logo = (ht, c = "#B2198B", sw = "#e6b9d5") =>
+        `<svg width="${Math.round((ht * 920) / 240)}" height="${ht}" viewBox="0 0 920 240" role="img" aria-label="AIEON – General Merchandise Store from Japan" style="display:block;flex:none"><g fill="${c}"><path d="M212 160H242L330 23H302z"/><rect x="302" y="23" width="123" height="15"/><rect x="355" y="23" width="15" height="137"/><rect x="355" y="145" width="80" height="15"/><path d="M600 20H620L708 160H688z"/><rect x="600" y="20" width="16" height="140"/><rect x="692" y="20" width="16" height="140"/></g><circle cx="508" cy="91" r="66" fill="none" stroke="${c}" stroke-width="16"/><path d="M308 93A100 20 0 0 1 508 93" fill="none" stroke="${c}" stroke-width="6" opacity=".75"/><path d="M308 93A100 20 0 0 0 508 93" fill="none" stroke="${sw}" stroke-width="10" stroke-linecap="round"/><text x="8" y="230" textLength="904" lengthAdjust="spacingAndGlyphs" font-family="Inter,Arial,sans-serif" font-size="37" fill="${c}">GENERAL MERCHANDISE STORE FROM JAPAN</text></svg>`;
+      const STORE = `<svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true" ${SK}><path d="M4 10v10h16V10M9 20v-6h6v6M3 10l2-6h14l2 6z"/></svg>`;
+      /* store data: floor plan after AEON Nguyen Van Linh (world units, 1000 x 534) */
+      const CS = 5,
+        MPP = 0.12,
+        sn = (v) => Math.floor(v / CS) * CS + CS / 2;
+      const D = [
+        {
+          n: [
+            "Rau củ & trái cây",
+            "Fruit & Veggies",
+            "野菜・果物",
+            "채소·과일",
+            "蔬菜水果",
+          ],
+          s: ["RAU QUẢ", "FRESH", "青果", "청과", "果蔬"],
+          k: "produce fruit fruits vegetable veggies rau qua trai_cay 野菜 果物 과일 채소 蔬菜 水果",
+        },
+        {
+          n: ["Thịt tươi", "Fresh Meat", "精肉", "정육", "鲜肉"],
+          s: ["THỊT", "MEAT", "精肉", "정육", "鲜肉"],
+          k: "meat pork beef chicken thit 肉 고기 猪肉 牛肉 鸡肉",
+        },
+        {
+          n: ["Hải sản", "Seafood", "鮮魚", "수산물", "海鲜"],
+          s: ["HẢI SẢN", "SEAFOOD", "鮮魚", "수산", "海鲜"],
+          k: "seafood fish hai_san 魚 생선 鱼 海鲜",
+        },
+        {
+          n: ["Đông lạnh", "Frozen", "冷凍食品", "냉동식품", "冷冻食品"],
+          s: ["ĐÔNG LẠNH", "FROZEN", "冷凍", "냉동", "冷冻"],
+          k: "frozen freezer dong_lanh 冷凍 냉동 冷冻",
+        },
+        {
+          n: [
+            "Sữa & trứng",
+            "Dairy & Eggs",
+            "乳製品・卵",
+            "유제품·계란",
+            "乳品与鸡蛋",
+          ],
+          s: ["SỮA", "DAIRY", "乳製品", "유제품", "乳品"],
+          k: "dairy sua trung 乳製品 유제품 乳品",
+        },
+        {
+          n: [
+            "Đồ uống & rượu bia",
+            "Beverages & Liquor",
+            "飲料・お酒",
+            "음료·주류",
+            "饮料酒水",
+          ],
+          s: ["ĐỒ UỐNG", "DRINKS", "飲料", "음료", "饮料"],
+          k: "beverage drink liquor alcohol do_uong ruou 飲料 음료 饮料 酒",
+        },
+        {
+          n: [
+            "Bánh mì & bánh kẹo",
+            "Bakery & Sweets",
+            "ベーカリー・お菓子",
+            "베이커리·과자",
+            "烘焙零食",
+          ],
+          s: ["BÁNH", "BAKERY", "パン", "베이커리", "烘焙"],
+          k: "bakery sweets confectionery snack banh パン お菓子 베이커리 과자 烘焙 零食",
+        },
+        {
+          n: [
+            "Gia vị & lương thực",
+            "Seasoning & Staples",
+            "調味料・米",
+            "조미료·쌀",
+            "调味粮油",
+          ],
+          s: ["GIA VỊ", "STAPLES", "調味料", "조미료", "粮油"],
+          k: "seasoning staples pantry gia_vi luong_thuc 調味料 조미료 调味 粮油",
+        },
+        {
+          n: [
+            "Thương hiệu TOPVALU",
+            "TOPVALU Brand",
+            "トップバリュ",
+            "탑밸류",
+            "TOPVALU品牌",
+          ],
+          s: ["TOPVALU", "TOPVALU", "TOPVALU", "TOPVALU", "TOPVALU"],
+          k: "topvalu brand private thuong_hieu",
+        },
+        {
+          n: [
+            "Trẻ em & gia dụng",
+            "Kids & Household",
+            "キッズ・日用品",
+            "아동·생활용품",
+            "母婴日用",
+          ],
+          s: ["GIA DỤNG", "HOME", "日用品", "생활용품", "日用品"],
+          k: "kids baby household home gia_dung tre_em 日用品 생활용품 母婴",
+        },
+        {
+          n: [
+            "Mỹ phẩm & sức khoẻ",
+            "Beauty & Health",
+            "美容・健康",
+            "뷰티·건강",
+            "美妆健康",
+          ],
+          s: ["MỸ PHẨM", "BEAUTY", "美容", "뷰티", "美妆"],
+          k: "beauty health cosmetics my_pham 美容 健康 뷰티 美妆",
+        },
+        {
+          n: [
+            "Món ăn sẵn",
+            "Ready Meals",
+            "惣菜・フードコート",
+            "즉석식품·푸드코트",
+            "熟食美食",
+          ],
+          s: ["ĂN SẴN", "READY", "惣菜", "즉석", "熟食"],
+          k: "ready meals food court an_san 惣菜 즉석 熟食",
+        },
+        {
+          n: [
+            "Cà phê Barista",
+            "Coffee & Barista",
+            "コーヒー・バリスタ",
+            "커피·바리스타",
+            "咖啡",
+          ],
+          s: ["CÀ PHÊ", "COFFEE", "コーヒー", "커피", "咖啡"],
+          k: "coffee barista ca_phe コーヒー 커피 咖啡",
+        },
+        {
+          n: [
+            "Hoa & khuyến mãi",
+            "Flowers & Deals",
+            "花・特売",
+            "꽃·특가",
+            "鲜花特卖",
+          ],
+          s: ["HOA", "DEALS", "特売", "특가", "特卖"],
+          k: "flower flowers deals promotion hoa khuyen_mai 花 特売 꽃 특가 特卖",
+        },
+      ];
+      /* [id, dept, price, stand-x, stand-y, facing, names vi|en|ja|ko|zh, keywords] */
+      const P = [
+        [
+          "ban",
+          0,
+          31200,
+          476,
+          478,
+          "u",
+          [
+            "Chuối, 1 nải",
+            "Bananas, 1 bunch",
+            "バナナ 1房",
+            "바나나 1송이",
+            "香蕉 1把",
+          ],
+          "banana chuoi バナナ 바나나 香蕉",
+        ],
+        [
+          "tom",
+          0,
+          24000,
+          370,
+          478,
+          "d",
+          [
+            "Cà chua 500 g",
+            "Tomatoes, 500 g",
+            "トマト 500g",
+            "토마토 500g",
+            "番茄 500克",
+          ],
+          "tomato ca_chua トマト 토마토 番茄",
+        ],
+        [
+          "apl",
+          0,
+          55000,
+          532,
+          478,
+          "u",
+          ["Táo 1 kg", "Apples, 1 kg", "りんご 1kg", "사과 1kg", "苹果 1公斤"],
+          "apple tao りんご 사과 苹果",
+        ],
+        [
+          "pork",
+          1,
+          89000,
+          76,
+          255,
+          "l",
+          [
+            "Ba rọi heo 500 g",
+            "Pork Belly 500 g",
+            "豚バラ肉 500g",
+            "삼겹살 500g",
+            "五花肉 500克",
+          ],
+          "pork belly heo thit_heo 豚 삼겹살 猪肉 五花肉",
+        ],
+        [
+          "beef",
+          1,
+          159000,
+          76,
+          373,
+          "l",
+          [
+            "Bò bít tết 300 g",
+            "Beef Steak 300 g",
+            "ビーフステーキ 300g",
+            "소고기 스테이크 300g",
+            "牛排 300克",
+          ],
+          "beef steak bo thit_bo 牛 소고기 牛排",
+        ],
+        [
+          "chk",
+          1,
+          69000,
+          76,
+          450,
+          "l",
+          [
+            "Ức gà 500 g",
+            "Chicken Breast 500 g",
+            "鶏むね肉 500g",
+            "닭가슴살 500g",
+            "鸡胸肉 500克",
+          ],
+          "chicken uc_ga 鶏 닭 鸡",
+        ],
+        [
+          "sal",
+          2,
+          98000,
+          142,
+          478,
+          "d",
+          [
+            "Phi lê cá hồi 200 g",
+            "Salmon Fillet 200 g",
+            "サーモン 200g",
+            "연어 200g",
+            "三文鱼 200克",
+          ],
+          "salmon ca_hoi サーモン 연어 三文鱼",
+        ],
+        [
+          "shr",
+          2,
+          125000,
+          240,
+          478,
+          "d",
+          [
+            "Tôm đông lạnh 500 g",
+            "Frozen Shrimp 500 g",
+            "冷凍えび 500g",
+            "냉동 새우 500g",
+            "冷冻虾 500克",
+          ],
+          "shrimp tom_dong えび 새우 虾",
+        ],
+        [
+          "sas",
+          2,
+          135000,
+          76,
+          478,
+          "d",
+          [
+            "Sashimi cá hồi",
+            "Salmon Sashimi",
+            "サーモン刺身",
+            "연어 회",
+            "三文鱼刺身",
+          ],
+          "sashimi 刺身 회",
+        ],
+        [
+          "ice",
+          3,
+          79000,
+          461,
+          108,
+          "u",
+          [
+            "Kem hộp 1 L",
+            "Ice Cream Tub 1 L",
+            "アイスクリーム 1L",
+            "아이스크림 1L",
+            "冰淇淋 1升",
+          ],
+          "ice cream kem アイス 아이스크림 冰淇淋",
+        ],
+        [
+          "dum",
+          3,
+          58000,
+          343,
+          108,
+          "u",
+          [
+            "Há cảo đông lạnh",
+            "Frozen Dumplings",
+            "冷凍餃子",
+            "냉동 만두",
+            "冷冻饺子",
+          ],
+          "dumpling ha_cao 餃子 만두 饺子",
+        ],
+        [
+          "fri",
+          3,
+          42000,
+          285,
+          108,
+          "u",
+          [
+            "Khoai tây chiên đông lạnh",
+            "Frozen Fries",
+            "冷凍ポテト",
+            "냉동 감자튀김",
+            "冷冻薯条",
+          ],
+          "fries potato khoai ポテト 감자 薯条",
+        ],
+        [
+          "milk",
+          4,
+          32000,
+          76,
+          215,
+          "r",
+          [
+            "Sữa tươi 1 L",
+            "Fresh Milk 1 L",
+            "牛乳 1L",
+            "우유 1L",
+            "鲜牛奶 1升",
+          ],
+          "milk sua 牛乳 우유 牛奶",
+        ],
+        [
+          "eggs",
+          4,
+          38500,
+          165,
+          478,
+          "u",
+          [
+            "Trứng gà, 10 quả",
+            "Eggs, pack of 10",
+            "卵 10個",
+            "계란 10구",
+            "鸡蛋 10枚",
+          ],
+          "egg trung 卵 계란 달걀 鸡蛋",
+        ],
+        [
+          "yog",
+          4,
+          29000,
+          110,
+          80,
+          "u",
+          [
+            "Sữa chua, 4 hộp",
+            "Yogurt, 4 cups",
+            "ヨーグルト 4個",
+            "요거트 4개",
+            "酸奶 4杯",
+          ],
+          "yogurt yoghurt sua_chua ヨーグルト 요거트 酸奶",
+        ],
+        [
+          "oj",
+          5,
+          45000,
+          76,
+          186,
+          "r",
+          [
+            "Nước cam 1 L",
+            "Orange Juice 1 L",
+            "オレンジジュース 1L",
+            "오렌지 주스 1L",
+            "橙汁 1升",
+          ],
+          "orange juice nuoc_cam オレンジ 오렌지 橙",
+        ],
+        [
+          "wat",
+          5,
+          42000,
+          302,
+          186,
+          "l",
+          [
+            "Nước khoáng, 6 chai",
+            "Mineral Water, 6-pack",
+            "ミネラルウォーター 6本",
+            "생수 6병",
+            "矿泉水 6瓶",
+          ],
+          "water nuoc_khoang ミネラル 생수 水",
+        ],
+        [
+          "beer",
+          5,
+          130000,
+          174,
+          128,
+          "d",
+          [
+            "Bia lon, 6 lon",
+            "Beer, 6 cans",
+            "ビール 6缶",
+            "맥주 6캔",
+            "啤酒 6罐",
+          ],
+          "beer bia ビール 맥주 啤酒",
+        ],
+        [
+          "sake",
+          5,
+          245000,
+          256,
+          107,
+          "d",
+          [
+            "Rượu sake 720 ml",
+            "Sake 720 ml",
+            "日本酒 720ml",
+            "사케 720ml",
+            "清酒 720毫升",
+          ],
+          "sake liquor ruou 日本酒 사케 清酒 酒",
+        ],
+        [
+          "bread",
+          6,
+          27000,
+          920,
+          425,
+          "d",
+          [
+            "Bánh mì sandwich",
+            "Sandwich Bread",
+            "食パン",
+            "식빵",
+            "三明治面包",
+          ],
+          "bread banh_mi パン 식빵 빵 面包",
+        ],
+        [
+          "cro",
+          6,
+          36000,
+          880,
+          425,
+          "d",
+          [
+            "Bánh sừng bò, 4 cái",
+            "Croissants, 4 pcs",
+            "クロワッサン 4個",
+            "크루아상 4개",
+            "牛角包 4个",
+          ],
+          "croissant sung_bo クロワッサン 크루아상 牛角包",
+        ],
+        [
+          "cook",
+          6,
+          39000,
+          430,
+          124,
+          "d",
+          [
+            "Bánh quy socola",
+            "Chocolate Cookies",
+            "チョコクッキー",
+            "초코 쿠키",
+            "巧克力饼干",
+          ],
+          "cookie cookies chocolate banh_quy クッキー 쿠키 饼干 巧克力",
+        ],
+        [
+          "rice",
+          7,
+          145000,
+          302,
+          298,
+          "l",
+          [
+            "Gạo thơm 5 kg",
+            "Jasmine Rice 5 kg",
+            "ジャスミン米 5kg",
+            "쌀 5kg",
+            "香米 5公斤",
+          ],
+          "rice gao 米 쌀 大米",
+        ],
+        [
+          "soy",
+          7,
+          36000,
+          76,
+          298,
+          "r",
+          [
+            "Nước tương 500 ml",
+            "Soy Sauce 500 ml",
+            "醤油 500ml",
+            "간장 500ml",
+            "酱油 500毫升",
+          ],
+          "soy sauce nuoc_tuong 醤油 간장 酱油",
+        ],
+        [
+          "oil",
+          7,
+          58000,
+          76,
+          360,
+          "r",
+          [
+            "Dầu ăn 1 L",
+            "Cooking Oil 1 L",
+            "食用油 1L",
+            "식용유 1L",
+            "食用油 1升",
+          ],
+          "oil dau_an 油 식용유",
+        ],
+        [
+          "tvn",
+          8,
+          52000,
+          76,
+          248,
+          "r",
+          [
+            "TOPVALU Mì ăn liền, 5 gói",
+            "TOPVALU Instant Noodles, 5-pack",
+            "トップバリュ ラーメン 5食",
+            "탑밸류 라면 5입",
+            "TOPVALU方便面 5包",
+          ],
+          "topvalu noodle noodles instant mi ラーメン 라면 方便面",
+        ],
+        [
+          "tvt",
+          8,
+          15000,
+          302,
+          310,
+          "r",
+          [
+            "TOPVALU Trà xanh 500 ml",
+            "TOPVALU Green Tea 500 ml",
+            "トップバリュ 緑茶 500ml",
+            "탑밸류 녹차 500ml",
+            "TOPVALU绿茶 500毫升",
+          ],
+          "topvalu tea green tra_xanh 緑茶 녹차 绿茶",
+        ],
+        [
+          "dia",
+          9,
+          235000,
+          302,
+          215,
+          "r",
+          [
+            "Tã em bé, 40 miếng",
+            "Baby Diapers, 40 pcs",
+            "おむつ 40枚",
+            "아기 기저귀 40매",
+            "婴儿纸尿裤 40片",
+          ],
+          "diaper diapers baby ta_em_be おむつ 기저귀 纸尿裤",
+        ],
+        [
+          "soap",
+          9,
+          52000,
+          302,
+          248,
+          "r",
+          [
+            "Nước rửa chén 750 ml",
+            "Dish Soap 750 ml",
+            "食器用洗剤 750ml",
+            "주방세제 750ml",
+            "洗洁精 750毫升",
+          ],
+          "soap dish rua_chen 洗剤 세제 洗洁精",
+        ],
+        [
+          "tis",
+          9,
+          68000,
+          562,
+          215,
+          "l",
+          [
+            "Giấy vệ sinh, 10 cuộn",
+            "Tissue, 10 rolls",
+            "ティッシュ 10ロール",
+            "휴지 10롤",
+            "卫生纸 10卷",
+          ],
+          "tissue giay 휴지 ティッシュ 纸",
+        ],
+        [
+          "sham",
+          10,
+          89000,
+          400,
+          398,
+          "u",
+          [
+            "Dầu gội 400 ml",
+            "Shampoo 400 ml",
+            "シャンプー 400ml",
+            "샴푸 400ml",
+            "洗发水 400毫升",
+          ],
+          "shampoo dau_goi シャンプー 샴푸 洗发水",
+        ],
+        [
+          "tpa",
+          10,
+          45000,
+          450,
+          398,
+          "u",
+          ["Kem đánh răng", "Toothpaste", "歯みがき粉", "치약", "牙膏"],
+          "toothpaste kem_danh_rang 歯みがき 치약 牙膏",
+        ],
+        [
+          "sus",
+          11,
+          129000,
+          985,
+          115,
+          "d",
+          [
+            "Sushi tổng hợp, 12 miếng",
+            "Sushi Set, 12 pcs",
+            "寿司盛り合わせ 12貫",
+            "모둠 초밥 12피스",
+            "寿司拼盘 12件",
+          ],
+          "sushi 寿司 초밥",
+        ],
+        [
+          "sal2",
+          11,
+          49000,
+          600,
+          452,
+          "u",
+          ["Salad trộn", "Salad Cup", "サラダカップ", "샐러드 컵", "沙拉杯"],
+          "salad 沙拉 サラダ 샐러드",
+        ],
+        [
+          "rib",
+          11,
+          99000,
+          346,
+          478,
+          "u",
+          [
+            "Sườn ướp sẵn 500 g",
+            "Marinated Pork Ribs 500 g",
+            "味付けスペアリブ 500g",
+            "양념 폭립 500g",
+            "腌制排骨 500克",
+          ],
+          "rib ribs ready_to_cook suon スペアリブ 폭립 排骨",
+        ],
+        [
+          "cof",
+          12,
+          169000,
+          775,
+          425,
+          "d",
+          [
+            "Cà phê hạt 250 g",
+            "Coffee Beans 250 g",
+            "コーヒー豆 250g",
+            "원두 250g",
+            "咖啡豆 250克",
+          ],
+          "coffee beans ca_phe コーヒー 커피 원두 咖啡",
+        ],
+        [
+          "icf",
+          12,
+          75000,
+          815,
+          425,
+          "d",
+          [
+            "Cà phê hoà tan, 20 gói",
+            "Instant Coffee, 20 sachets",
+            "インスタントコーヒー 20本",
+            "인스턴트 커피 20봉",
+            "速溶咖啡 20条",
+          ],
+          "instant coffee ca_phe_hoa_tan インスタント 커피 咖啡",
+        ],
+        [
+          "flw",
+          13,
+          120000,
+          790,
+          352,
+          "d",
+          [
+            "Hoa hồng bó",
+            "Rose Bouquet",
+            "バラの花束",
+            "장미 꽃다발",
+            "玫瑰花束",
+          ],
+          "flower flowers rose hoa 花 バラ 꽃 장미 玫瑰",
+        ],
+        [
+          "gift",
+          13,
+          199000,
+          712,
+          352,
+          "d",
+          [
+            "Hộp quà khuyến mãi",
+            "Promo Gift Set",
+            "お得ギフトセット",
+            "프로모션 선물세트",
+            "促销礼盒",
+          ],
+          "gift promo promotion khuyen_mai ギフト 선물 礼盒 促销",
+        ],
+      ].map(([id, d, price, x, y, f, n, k]) => ({
+        id,
+        d,
+        price,
+        x: sn(x),
+        y: sn(y),
+        f,
+        n,
+        k,
+      }));
+      /* fixtures [x0,y0,x1,y1,type,colour,label]: s shelf, f freezer, t produce, c counter, p food stall, e open floor */
+      const FX = [
+        [0, 0, 213, 66, "s", "#55b0a0", "dd"],
+        [213, 0, 232, 66, "f", "#63c5b8", ""],
+        [232, 0, 523, 24, "f", "#63c5b8", 3],
+        [271, 35, 299, 95, "f", "#63c5b8", ""],
+        [331, 35, 359, 95, "f", "#63c5b8", ""],
+        [388, 35, 416, 95, "f", "#63c5b8", ""],
+        [447, 35, 475, 95, "f", "#63c5b8", ""],
+        [523, 0, 550, 95, "f", "#63c5b8", ""],
+        [550, 0, 613, 84, "e", "#dcdcdc", "eat"],
+        [550, 84, 613, 95, "c", "#5a4fa8", ""],
+        [613, 0, 982, 43, "p", "#c67ab5", "food"],
+        [872, 0, 982, 27, "p", "#d9b8d4", "omni"],
+        [706, 60, 768, 75, "p", "#c67ab5", ""],
+        [706, 83, 768, 98, "p", "#c67ab5", ""],
+        [785, 83, 848, 98, "p", "#c67ab5", ""],
+        [867, 56, 966, 70, "p", "#c67ab5", ""],
+        [867, 83, 966, 98, "p", "#c67ab5", ""],
+        [668, 82, 685, 97, "c", "#3a1b1f", "kios"],
+        [0, 93, 57, 193, "s", "#f9ac5c", "mi"],
+        [0, 193, 57, 314, "s", "#f58a63", "pork"],
+        [0, 334, 57, 412, "s", "#b3687f", "beef"],
+        [0, 412, 57, 490, "s", "#f09a5c", "chick"],
+        [224, 120, 288, 139, "s", "#8fb8e3", "liq"],
+        [134, 149, 214, 169, "s", "#8fb8e3", "beer"],
+        [224, 149, 288, 169, "s", "#8fb8e3", "liq"],
+        [95, 177, 288, 195, "s", "#edd0c6", 5],
+        [95, 208, 288, 223, "s", "#f0532b", "milk"],
+        [95, 239, 288, 257, "s", "#f173ac", "tv"],
+        [95, 270, 224, 326, "s", "#f2705a", "sea"],
+        [233, 271, 251, 327, "s", "#f2705a", ""],
+        [262, 271, 288, 290, "s", "#f46b50", "rice"],
+        [262, 308, 288, 326, "s", "#f46b50", ""],
+        [95, 334, 288, 386, "s", "#f2705a", "sea"],
+        [315, 136, 549, 194, "s", "#9fcc3b", "conf"],
+        [317, 208, 548, 223, "s", "#b5a49a", "kidhh"],
+        [317, 239, 548, 257, "s", "#15719f", "hc"],
+        [317, 271, 548, 286, "s", "#f6c21c", "edlp"],
+        [317, 302, 512, 318, "s", "#f173ac", "tv"],
+        [317, 333, 512, 349, "s", "#1c5a2c", "nf"],
+        [317, 368, 512, 385, "s", "#1e5a30", "hb"],
+        [524, 302, 548, 318, "s", "#e8222a", ""],
+        [524, 333, 548, 349, "s", "#e8222a", ""],
+        [524, 370, 548, 385, "s", "#e8222a", ""],
+        [575, 134, 648, 397, "c", "#f4eb2f", "cash"],
+        [672, 134, 866, 397, "e", "#dedfe1", "eat"],
+        [672, 365, 755, 397, "s", "#e8222a", "promo"],
+        [755, 365, 830, 397, "s", "#7bc57b", "flw"],
+        [892, 134, 921, 278, "c", "#f4eb2f", "cash"],
+        [892, 294, 921, 397, "e", "#dedfe1", ""],
+        [944, 134, 971, 397, "c", "#cf8a2e", "rew"],
+        [971, 134, 1000, 397, "c", "#fdc473", "sush"],
+        [95, 409, 133, 467, "s", "#f0a05f", ""],
+        [146, 409, 185, 467, "t", "#63c5b8", ""],
+        [199, 409, 238, 467, "s", "#63c5b8", ""],
+        [253, 409, 288, 467, "s", "#63c5b8", ""],
+        [315, 409, 377, 467, "s", "#3bb878", ""],
+        [401, 409, 440, 467, "s", "#3bb878", ""],
+        [457, 409, 496, 467, "t", "#3bb878", ""],
+        [514, 409, 553, 467, "t", "#3bb878", ""],
+        [0, 490, 98, 534, "s", "#e8a7c1", "sash"],
+        [98, 490, 186, 534, "s", "#e8a7c1", "fish"],
+        [186, 490, 294, 534, "s", "#e8a7c1", "fzi"],
+        [315, 490, 432, 534, "t", "#3bb878", "orgv"],
+        [432, 490, 553, 534, "t", "#3bb878", "impf"],
+        [575, 409, 611, 436, "c", "#f38a62", "salb"],
+        [743, 422, 761, 437, "c", "#3a1b1f", "kios"],
+        [591, 477, 702, 534, "c", "#f48a5c", "svc"],
+        [577, 477, 591, 534, "c", "#5a4fa8", ""],
+        [702, 444, 848, 534, "s", "#d8e8b8", "bar"],
+        [848, 444, 1000, 534, "s", "#63c9d0", "bak"],
+      ];
+      const SOL = FX.filter((b) => b[4] != "e");
+      const LB = {
+        dd: "Bơ sữa, thực phẩm hàng ngày|Daily & Dairy|乳製品・日配|유제품·일상식품|乳品日配",
+        liq: "Rượu|Liquor|お酒|주류|酒类",
+        beer: "Bia|Beer|ビール|맥주|啤酒",
+        milk: "Sữa|Milk|牛乳|우유|牛奶",
+        tv: "TOPVALU",
+        sea: "Gia vị, thực phẩm khô|Seasoning & Staples|調味料・乾物|조미료·건어물|调味干货",
+        rice: "Gạo|Rice|米|쌀|大米",
+        conf: "Bánh kẹo|Confectionery|お菓子|과자|糖果零食",
+        kidhh:
+          "Trẻ em · Gia dụng|Kids · Household|キッズ・日用品|아동·생활용품|儿童·日用",
+        hc: "Home Coody",
+        edlp: "Giá thấp mỗi ngày|Everyday Low Price|毎日低価格|매일 최저가|天天低价",
+        nf: "Hoá phẩm|Non-food|非食品|비식품|非食品",
+        hb: "Mỹ phẩm · Sức khoẻ|Health & Beauty|美容・健康|뷰티·건강|美妆健康",
+        pork: "Thịt heo|Pork|豚肉|돼지고기|猪肉",
+        beef: "Thịt bò|Beef|牛肉|소고기|牛肉",
+        chick: "Thịt gà|Chicken|鶏肉|닭고기|鸡肉",
+        mi: "Thịt nhập khẩu|Imported meat|輸入肉|수입육|进口肉",
+        sash: "Sashimi",
+        fish: "Quầy cá|Seafood|鮮魚|수산물|海鲜",
+        fzi: "Hải sản đông lạnh|Frozen seafood|冷凍魚介|냉동 수산물|冷冻海鲜",
+        orgv: "Rau sạch|Organic veggies|有機野菜|유기농 채소|有机蔬菜",
+        impf: "Trái cây nhập khẩu|Imported fruits|輸入フルーツ|수입 과일|进口水果",
+        bak: "Bánh mì|Bakery|ベーカリー|베이커리|烘焙",
+        bar: "Barista Beans",
+        cash: "Thu ngân|Cashier|レジ|계산대|收银台",
+        eat: "Khu ngồi ăn|Dining area|イートイン|식사 공간|用餐区",
+        sush: "Sushi",
+        rew: "Bếp Reward|Reward Kitchen|リワードキッチン|리워드 키친|奖励厨房",
+        food: "Ẩm thực|Food court|フードコート|푸드코트|美食广场",
+        omni: "Mua hàng trực tuyến|Online orders|オンライン注文|온라인 주문|线上订购",
+        svc: "Dịch vụ khách hàng|Customer service|カスタマーサービス|고객 서비스|客户服务",
+        salb: "Salad Bar",
+        flw: "Quầy hoa|Flowers|花|꽃|鲜花",
+        promo: "Khuyến mãi|Promotion|特売|프로모션|促销",
+        kios: "KIOS",
+        ent: "Cửa vào|Check in|入口|입구|入口",
+      };
+      const byId = (id) => P.find((p) => p.id == id),
+        pn = (p) => p.n[L],
+        dn = (i) => D[i].n[L];
+      const S = {
+        screen: "login",
+        view: "top",
+        q: "",
+        fc: -1,
+        ft: -1,
+        user: null,
+        dest: byId("milk"),
+        pos: [sn(640), sn(415)],
+        cart: { milk: 2, eggs: 1, bread: 1, ban: 1, chk: 1 },
+        modal: null,
+      };
+      let R,
+        AI = null,
+        tm;
+      /* accent-insensitive multilingual search */
+      const nz = (s) =>
+        s
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .normalize("NFC")
+          .replace(/đ/g, "d");
+      const SW = new Set(
+        "the a an of to me is are where find take show guide navigate add put buy cart my some please i want need can you get go and for in on it".split(
+          " ",
+        ),
+      );
+      const kw = (s) =>
+        nz(s)
+          .split(" ")
+          .map((k) => k.replace(/_/g, " "));
+      function find(q) {
+        q = nz(q).trim();
+        if (!q) return [];
+        const dd = D.findIndex((d) => d.n.some((x) => nz(x) == q));
+        if (dd >= 0) return P.filter((p) => p.d == dd);
+        const w = q
+            .replace(/[^\p{L}\p{N} ]/gu, " ")
+            .split(" ")
+            .filter((x) => x && !SW.has(x)),
+          m = (k) =>
+            (k.length > 2 || /[^\x00-\x7f]/.test(k)) && q.includes(k)
+              ? 3 + k.length / 10
+              : w.some((x) => x.length > 1 && k.includes(x))
+                ? 2
+                : 0;
+        return P.map((p) => {
+          let s = 0;
+          const cur = nz(p.n[L]).split(/[ ,]+/),
+            nw = nz(p.n.join(" ")).split(/[ ,]+/);
+          w.forEach((x) => {
+            if (cur.some((y) => y.startsWith(x))) s += 6;
+            else if (
+              nz(p.n[1])
+                .split(/[ ,]+/)
+                .some((y) => y.startsWith(x))
+            )
+              s += 5;
+            else if (nw.some((y) => y.startsWith(x))) s += 4;
+            else if (x.length > 1 && nw.some((y) => y.includes(x))) s += 1;
+          });
+          kw(p.k).forEach((k) => (s += m(k)));
+          kw(D[p.d].k).forEach((k) => {
+            if (m(k)) s += 1;
+          });
+          return [p, s];
+        })
+          .filter((a) => a[1])
+          .sort((a, b) => b[1] - a[1])
+          .map((a) => a[0]);
+      }
+      let GRID = null,
+        RC = {};
+      const GW = Math.ceil(1000 / CS),
+        GH = Math.ceil(534 / CS);
+      function grid() {
+        if (GRID) return GRID;
+        const g = new Uint8Array(GW * GH);
+        for (let j = 0; j < GH; j++)
+          for (let i = 0; i < GW; i++) {
+            const x = i * CS + CS / 2,
+              y = j * CS + CS / 2;
+            let f = x > 6 && x < 994 && y > 6 && y < 528,
+              nr = 0;
+            if (f)
+              for (const b of SOL) {
+                const d = Math.hypot(
+                  Math.max(b[0] - x, 0, x - b[2]),
+                  Math.max(b[1] - y, 0, y - b[3]),
+                );
+                if (d < 6) {
+                  f = 0;
+                  break;
+                }
+                if (d < 14) nr = 1;
+              }
+            g[i + j * GW] = f ? (nr ? 2 : 1) : 0;
+          }
+        return (GRID = g);
+      }
+      function nav(a, b) {
+        const g = grid(),
+          cell = (x, y) =>
+            Math.min(GW - 1, (x / CS) | 0) +
+            Math.min(GH - 1, (y / CS) | 0) * GW,
+          near = (x, y) => {
+            const i = cell(x, y);
+            if (g[i]) return i;
+            const ix = i % GW,
+              iy = (i / GW) | 0;
+            for (let r = 1; r < 14; r++)
+              for (let dy = -r; dy <= r; dy++)
+                for (let dx = -r; dx <= r; dx++) {
+                  const X = ix + dx,
+                    Y = iy + dy;
+                  if (X >= 0 && Y >= 0 && X < GW && Y < GH && g[X + Y * GW])
+                    return X + Y * GW;
+                }
+            return i;
+          },
+          s = near(a[0], a[1]),
+          e = near(b[0], b[1]),
+          ctr = (i) => [(i % GW) * CS + CS / 2, ((i / GW) | 0) * CS + CS / 2];
+        if (s == e) return [a];
+        const dist = new Float32Array(GW * GH * 4).fill(1e9),
+          prev = new Int32Array(GW * GH * 4).fill(-1),
+          hp = [];
+        const push = (c, st) => {
+            hp.push([c, st]);
+            let i = hp.length - 1;
+            while (i) {
+              const q = (i - 1) >> 1;
+              if (hp[q][0] <= hp[i][0]) break;
+              [hp[q], hp[i]] = [hp[i], hp[q]];
+              i = q;
+            }
+          },
+          pop = () => {
+            const top = hp[0],
+              l = hp.pop();
+            if (hp.length) {
+              hp[0] = l;
+              let i = 0;
+              for (;;) {
+                let m = i;
+                const x = 2 * i + 1,
+                  y = x + 1;
+                if (x < hp.length && hp[x][0] < hp[m][0]) m = x;
+                if (y < hp.length && hp[y][0] < hp[m][0]) m = y;
+                if (m == i) break;
+                [hp[m], hp[i]] = [hp[i], hp[m]];
+                i = m;
+              }
+            }
+            return top;
+          };
+        for (let d = 0; d < 4; d++) {
+          dist[s * 4 + d] = 0;
+          push(0, s * 4 + d);
+        }
+        const DX = [0, 1, 0, -1],
+          DY = [-1, 0, 1, 0];
+        let goal = -1;
+        while (hp.length) {
+          const [c, st] = pop();
+          if (c > dist[st]) continue;
+          const ci = st >> 2,
+            d = st & 3;
+          if (ci == e) {
+            goal = st;
+            break;
+          }
+          const X = ci % GW,
+            Y = (ci / GW) | 0;
+          for (let nd = 0; nd < 4; nd++) {
+            const nx = X + DX[nd],
+              ny = Y + DY[nd];
+            if (nx < 0 || ny < 0 || nx >= GW || ny >= GH) continue;
+            const ni = nx + ny * GW;
+            if (!g[ni]) continue;
+            const nc = c + 10 + (g[ni] == 2 ? 4 : 0) + (nd != d ? 50 : 0),
+              ns = ni * 4 + nd;
+            if (nc < dist[ns]) {
+              dist[ns] = nc;
+              prev[ns] = st;
+              push(nc, ns);
+            }
+          }
+        }
+        if (goal < 0) return [a, b];
+        const ch = [];
+        for (let st = goal; st >= 0; st = prev[st]) ch.push(st);
+        ch.reverse();
+        const pts = [a];
+        for (let i = 1; i < ch.length - 1; i++)
+          if ((ch[i] & 3) != (ch[i + 1] & 3)) pts.push(ctr(ch[i] >> 2));
+        pts.push(b);
+        return pts;
+      }
+      function route() {
+        const key = S.dest.id + S.pos;
+        if (RC.key == key) return RC.v;
+        const p = S.dest,
+          pts = nav(S.pos, [p.x, p.y]).filter(
+            (a, i, q) => !i || a[0] != q[i - 1][0] || a[1] != q[i - 1][1],
+          ),
+          steps = [];
+        let pd = null;
+        for (let i = 1; i < pts.length; i++) {
+          const a = pts[i - 1],
+            b = pts[i],
+            dx = Math.sign(b[0] - a[0]),
+            dy = Math.sign(b[1] - a[1]),
+            m = Math.max(
+              1,
+              Math.round((Math.abs(b[0] - a[0]) + Math.abs(b[1] - a[1])) * MPP),
+            );
+          steps.push({
+            m,
+            k: !pd
+              ? "straight"
+              : pd[0] * dy - pd[1] * dx > 0
+                ? "right"
+                : "left",
+          });
+          pd = [dx, dy];
+        }
+        const m = steps.reduce((x, a) => x + a.m, 0);
+        return (RC = {
+          key,
+          v: { pts, steps, m, min: Math.max(1, Math.ceil(m / 70)) },
+        }).v;
+      }
+      const nextTxt = () =>
+        !R.steps.length
+          ? t("here")
+          : R.steps.length < 2
+            ? t("arrIn", R.m)
+            : t("inm", R.steps[0].m, t(R.steps[1].k));
+      const n = () => Object.values(S.cart).reduce((a, b) => a + b, 0);
+      function tot() {
+        const sub = Object.entries(S.cart).reduce(
+            (a, [k, v]) => a + byId(k).price * v,
+            0,
+          ),
+          sv =
+            S.user && S.user.member ? Math.round((sub * 0.05) / 100) * 100 : 0;
+        return { subtotal: sub, savings: sv, total: sub - sv };
+      }
+      function toast(m) {
+        const e = $("#tt");
+        e.textContent = m;
+        e.style.opacity = 1;
+        clearTimeout(tm);
+        tm = setTimeout(() => (e.style.opacity = 0), 2400);
+      }
+      /* ---- actions: the app's control surface, used by buttons, joysticks AND by Pip ---- */
+      const A = {
+        find: (q) =>
+          find(q)
+            .slice(0, 5)
+            .map((p) => ({
+              id: p.id,
+              name: pn(p),
+              dept: dn(p.d),
+              aisle: D[p.d].a || p.d + 1,
+              price: p.price,
+            })),
+        go(id) {
+          const p = byId(id);
+          if (!p) return { error: "unknown product id" };
+          S.dest = p;
+          if (S.screen != "aisle") S.screen = "map";
+          render();
+          return {
+            ok: 1,
+            product: pn(p),
+            aisle: p.d + 1,
+            distance_m: R.m,
+            minutes: R.min,
+          };
+        },
+        add(id, q = 1) {
+          const p = byId(id);
+          if (!p) return { error: "unknown product id" };
+          const c = (S.cart[id] || 0) + q;
+          if (c > 0) S.cart[id] = c;
+          else delete S.cart[id];
+          if (S.screen == "cart") render();
+          toast(t(q > 0 ? "tAdd" : "tUpd", pn(p)));
+          return {
+            ok: 1,
+            product: pn(p),
+            qty: S.cart[id] || 0,
+            cart_total: tot().total,
+          };
+        },
+        screen(s) {
+          if (!["home", "map", "aisle", "cart", "stores"].includes(s))
+            return { error: "unknown screen" };
+          S.screen = s;
+          S.modal = null;
+          render();
+          return { ok: 1, screen: s };
+        },
+        view(v) {
+          if (v == "first_person") S.screen = "aisle";
+          else if (v == "top" || v == "3d") {
+            S.view = v;
+            S.screen = "map";
+          } else return { error: "use top, 3d or first_person" };
+          render();
+          return { ok: 1, view: v };
+        },
+        cart: () => ({
+          items: Object.entries(S.cart).map(([k, v]) => ({
+            id: k,
+            name: pn(byId(k)),
+            qty: v,
+          })),
+          ...tot(),
+        }),
+        pay(m) {
+          S.screen = "cart";
+          S.modal =
+            m == "cart" ? "cart" : m == "counter" ? "counter" : "choose";
+          if (S.modal == "counter")
+            S.code = "AE-" + (1000 + Math.floor(Math.random() * 9000));
+          render();
+          return { ok: 1, total: tot().total, step: S.modal };
+        },
+        arrive() {
+          S.pos = [S.dest.x, S.dest.y];
+          render();
+          toast(t("tArr", pn(S.dest)));
+          return { ok: 1 };
+        },
+      };
+      ["go", "add", "screen", "view", "pay", "arrive"].forEach((k) => {
+        const f = A[k];
+        A[k] = (...a) =>
+          S.screen == "login"
+            ? {
+                error:
+                  "shopper has not signed in yet; ask them to sign in on the screen",
+              }
+            : f(...a);
+      });
+      /* ---- screens ---- */
+      function login() {
+        return `<div style="width:420px;background:#B2198B;color:#fff;padding:36px;display:flex;flex-direction:column;justify-content:space-between">${logo(88, "#fff")}<div><div style="width:130px;height:130px;border-radius:50%;background:#fff;display:grid;place-items:center;margin-bottom:22px"><div style="transform:scale(1.9)">${chick()}</div></div><h1 style="margin:0 0 10px;font-size:56px;line-height:1.05">${t("hi")}</h1><p style="margin:0;font-size:16px;color:#f9eef5;max-width:320px">${t("hiS")}</p></div><div></div></div>
+<div style="flex:1;display:flex;align-items:center;justify-content:center"><div style="width:360px;display:flex;flex-direction:column;gap:12px"><div class="rw" style="font-size:22px;font-weight:700;margin-bottom:4px">${t("sin")}</div><label class="sm" for="lid">${t("idp")}</label><input id="lid" class="fi" autocomplete="tel" inputmode="tel"><label class="sm" for="lpin">${t("pinp")}</label><input id="lpin" class="fi" type="password" autocomplete="current-password"><div id="er" role="alert" style="color:#b3261e;font-size:13px;min-height:18px"></div><button class="b" data-a="in" style="min-height:52px;font-size:16px">${t("sin")}</button><button class="g" data-a="gst">${t("gst")}</button><button data-a="fpw" style="align-self:flex-start;background:none;border:0;color:#8a1269;font-weight:600;font-size:14px;text-decoration:underline;min-height:44px;padding:0">${t("fpw")}</button></div></div>`;
+      }
+      function home() {
+        return `<div style="width:300px;background:#B2198B;color:#fff;padding:28px;display:flex;flex-direction:column;justify-content:space-between">${logo(62, "#fff")}<div><div style="width:96px;height:96px;border-radius:50%;background:#fff;display:grid;place-items:center;margin-bottom:16px"><div style="transform:scale(1.4)">${chick()}</div></div><h1 style="margin:0 0 8px;font-size:24px;line-height:1.2">${t("wel")}</h1><p style="margin:0;font-size:15px;color:#f9eef5">${t("welS")}</p></div><div style="display:flex;flex-direction:column;gap:10px"><button class="g" data-a="s" data-v="stores">${t("stFind")}</button><button class="g" data-a="s" data-v="cart">${t("cartB", n())}</button></div></div>
+<div style="flex:1;min-width:0;padding:28px 32px;display:flex;flex-direction:column;gap:16px"><div class="rw"><label for="q" style="position:absolute;left:-9999px">${t("sph")}</label><input id="q" class="fi" style="flex:1;height:52px;border-radius:26px;padding:0 22px" value="${h(S.q).replace(/"/g, "&quot;")}" placeholder="${t("sph")}" autocomplete="off"><button class="g" data-a="so" style="min-height:52px;display:flex;gap:6px;align-items:center;flex:none">${SOUT}${t("so")}</button></div><div id="rs" style="display:flex;flex-direction:column;gap:12px;flex:1;min-height:0;overflow:auto"></div></div>`;
+      }
+      const hl = (s, q) => {
+        const a = nz(s),
+          w = nz(q)
+            .split(" ")
+            .filter((x) => x && !SW.has(x))[0];
+        if (!w) return h(s);
+        let i = -1;
+        for (let j = a.indexOf(w); j >= 0; j = a.indexOf(w, j + 1))
+          if (!j || " ,".includes(a[j - 1])) {
+            i = j;
+            break;
+          }
+        if (i < 0) return h(s);
+        return (
+          h(s.slice(0, i)) +
+          `<b style="color:#B2198B">${h(s.slice(i, i + w.length))}</b>` +
+          h(s.slice(i + w.length))
+        );
+      };
+      function rs() {
+        const r = S.q ? find(S.q) : 0;
+        $("#rs").innerHTML = !S.q
+          ? `<div style="font-weight:700;font-size:18px">${t("dep")}</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">${D.map((d, i) => `<button class="t" data-a="dept" data-v="${h(d.n[L])}" style="height:auto;min-height:92px;padding:10px 12px;gap:6px;font-size:13px;line-height:1.2"><span class="o" style="width:36px;height:36px">${ic(i)}</span><span>${h(d.n[L])}<br><span class="sm" style="font-size:12px">${t("aisle", i + 1)}</span></span></button>`).join("")}</div><div style="font-weight:700;font-size:18px">${t("rec")}</div><div style="display:flex;gap:10px">${["milk", "eggs", "bread"].map((id) => `<button data-a="go" data-id="${id}" style="border:0;background:#e6b9d5;color:#3a1030;border-radius:22px;min-height:44px;padding:0 18px;font-weight:600">${h(pn(byId(id)).split(/[ ,]\d|, /)[0])}</button>`).join("")}</div>`
+          : `<div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:18px">${t("sug")}</b><button class="g sb" data-a="clr">${t("clr")}</button></div>${
+              r.length
+                ? r
+                    .slice(0, 6)
+                    .map(
+                      (p) =>
+                        `<div class="cd rw"><div style="flex:1"><b>${hl(pn(p), S.q)}</b><div class="sm">${h(dn(p.d))} · ${t("aisle", p.d + 1)} · ${fmt(p.price)}</div></div><button class="g sb" data-a="add" data-id="${p.id}">${t("add")}</button><button class="b sb" data-a="go" data-id="${p.id}">${t("guide")}</button></div>`,
+                    )
+                    .join("")
+                : `<p>${t("none")}</p>`
+            }`;
+      }
+      const lum = (c) => {
+        const v = parseInt(c.slice(1), 16);
+        return 0.299 * (v >> 16) + 0.587 * ((v >> 8) & 255) + 0.114 * (v & 255);
+      };
+      const shade = (c, f) => {
+        const v = parseInt(c.slice(1), 16);
+        return (
+          "#" +
+          (
+            (1 << 24) |
+            (Math.round((v >> 16) * f) << 16) |
+            (Math.round(((v >> 8) & 255) * f) << 8) |
+            Math.round((v & 255) * f)
+          )
+            .toString(16)
+            .slice(1)
+        );
+      };
+      const zl = (k) =>
+        typeof k == "number"
+          ? D[k].n[L]
+          : k
+            ? LB[k].includes("|")
+              ? LB[k].split("|")[L]
+              : LB[k]
+            : "";
+      function mapSvg() {
+        const d3 = S.view == "3d",
+          ex = d3 ? 7 : 0,
+          fx = [...FX].sort((a, b) => a[3] - b[3]);
+        let o = "";
+        for (const b of fx) {
+          const [x0, y0, x1, y1, ty, c, lb] = b,
+            w = x1 - x0,
+            hh = y1 - y0,
+            fl = ty == "e";
+          if (fl)
+            o += `<rect x="${x0}" y="${y0}" width="${w}" height="${hh}" fill="${c}"/>`;
+          else {
+            if (ex)
+              o += `<rect x="${x0 + 2}" y="${y0 + 3}" width="${w}" height="${hh}" fill="#000" opacity=".18"/><rect x="${x0}" y="${y1 - ex}" width="${w}" height="${ex}" fill="${shade(c, 0.68)}"/>`;
+            o += `<rect x="${x0}" y="${y0 - ex}" width="${w}" height="${hh}" fill="${c}" stroke="#00000030" stroke-width=".8"/>`;
+          }
+          const tx = zl(lb);
+          if (tx) {
+            const v = hh > w * 2.5 && w < 45,
+              ww = v ? hh : w,
+              hw = v ? w : hh,
+              fs = Math.min(
+                13,
+                hw * 0.62,
+                ww / (tx.length * (L >= 2 ? 1.05 : 0.56)),
+              );
+            if (fs >= 7.5) {
+              const cxm = x0 + w / 2,
+                cym = y0 - (fl ? 0 : ex) + hh / 2;
+              o += `<text x="${cxm}" y="${cym}"${v ? ` transform="rotate(-90 ${cxm} ${cym})"` : ""} text-anchor="middle" dominant-baseline="central" font-size="${fs.toFixed(1)}" font-weight="600" fill="${lum(c) < 125 ? "#fff" : "#222"}" font-family="Inter,sans-serif">${h(tx)}</text>`;
+            }
+          }
+        }
+        const pts = R.pts,
+          dd = "M" + pts.map((a) => a.join(" ")).join("L"),
+          e = pts[pts.length - 1],
+          s0 = pts[0];
+        o += `<g fill="#111"><path d="M1042 98V118L1012 108z"/><path d="M1042 414V434L1012 424z"/></g><text x="1010" y="134" font-size="8" fill="#111" font-weight="600" font-family="Inter,sans-serif">${h(zl("ent"))}</text><text x="1010" y="450" font-size="8" fill="#111" font-weight="600" font-family="Inter,sans-serif">${h(zl("ent"))}</text>`;
+        o += `<path class="dr" pathLength="1" d="${dd}" fill="none" stroke="#e6b9d5" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/><path class="dr" pathLength="1" d="${dd}" fill="none" stroke="#B2198B" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="${dd}" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 12" opacity=".9"/>`;
+        o += `<circle cx="${s0[0]}" cy="${s0[1]}" r="8" fill="#fff" stroke="#B2198B" stroke-width="4"/><g transform="translate(${e[0]} ${e[1]}) scale(1.5)"><path d="M0 0c-10-12-14-18-14-24a14 14 0 0128 0c0 6-4 12-14 24z" fill="#B2198B" stroke="#fff" stroke-width="2"/><circle cy="-24" r="5" fill="#fff"/></g>`;
+        return `<svg width="660" height="339" viewBox="-6 -6 1052 546" role="img" aria-label="${h(pn(S.dest))}" style="display:block"><rect x="0" y="0" width="1000" height="534" fill="#faf8f4" stroke="#222" stroke-width="3"/>${o}</svg>`;
+      }
+      function steps() {
+        return (
+          R.steps
+            .map(
+              (s, i) =>
+                `<div class="rw"><span class="n">${i + 1}</span><span style="flex:1">${t(s.k)}</span><span class="sm">${s.m} m</span></div>`,
+            )
+            .join("") +
+          `<div class="rw"><span class="n">&#10003;</span><span style="flex:1;font-weight:600">${R.steps.length ? t("arrive") : t("here")}</span></div>`
+        );
+      }
+      const TILT =
+          "perspective(900px) rotateX(46deg) translateY(20px) scale(1.1)",
+        mp = (x, y) => [(x + 6) * 0.6274, 100 + (y + 6) * 0.6274],
+        cl = (v, a, b) => Math.max(a, Math.min(b, v));
+      function map() {
+        const p = S.dest,
+          e = R.pts[R.pts.length - 1],
+          c = R.pts[1] || R.pts[0],
+          d3 = S.view == "3d",
+          E = mp(e[0], e[1]),
+          C = mp(c[0], c[1]);
+        return `<div style="width:300px;background:#fff;padding:20px;display:flex;flex-direction:column;gap:14px">${logo(56)}<div class="c rw">${PIN}<div style="flex:1"><div style="font-size:18px;font-weight:700">${h(pn(p))}</div><div class="sm">${h(dn(p.d))} · ${t("aisle", p.d + 1)}</div></div><button class="g sb" data-a="add" data-id="${p.id}">${t("addC")}</button></div><div class="c" style="display:flex;flex-direction:column;gap:10px"><div style="font-weight:700;font-size:17px">${t("minm", R.min, R.m)}</div>${steps()}</div><div style="flex:1"></div><button class="b" data-a="arr">${t("arrived")}</button><button class="g" data-a="s" data-v="home">${t("change")}</button></div>
+<div style="flex:1;position:relative;overflow:hidden"><div id="mp" style="position:absolute;left:0;top:100px;width:660px;height:339px;transform-origin:50% 85%;transform:${d3 ? TILT : "none"}">${mapSvg()}</div>
+<div style="position:absolute;left:${d3 ? 300 : cl(E[0] - 50, 10, 520)}px;top:${d3 ? 24 : cl(E[1] - 64, 8, 520)}px;background:#fff;border-radius:20px;padding:8px 16px;font-weight:700;box-shadow:0 2px 8px #3a103022">${h(pn(p))}</div>
+<div style="position:absolute;left:${d3 ? 24 : cl(C[0] + 12, 10, 380)}px;top:${d3 ? 24 : cl(C[1] - 70, 10, 520)}px;display:flex;align-items:center;gap:6px">${chick()}<div style="background:#fff;border:2px solid #B2198B;border-radius:16px;padding:10px 14px;font-weight:700;font-size:16px;color:#8a1269">${nextTxt()}</div></div>
+<div style="position:absolute;right:20px;top:20px"><button class="i" data-a="s" data-v="home" aria-label="Home">${HOME}</button></div>
+<div style="position:absolute;right:20px;bottom:96px;display:flex;flex-direction:column;gap:10px"><button class="v${d3 ? " a" : ""}" data-a="v" data-v="3d">${t("v3d")}</button><button class="v${d3 ? "" : " a"}" data-a="v" data-v="top">${t("vtop")}</button><button class="v" data-a="v" data-v="first_person">${t("vfp")}</button></div></div>`;
+      }
+      /* ---- first-person: raycast supermarket + two thumb joysticks ---- */
+      const W = 480,
+        H = 270,
+        FL = W / 2 / Math.tan(0.575),
+        EY = 13,
+        HT = 22,
+        FACE = { u: -Math.PI / 2, r: 0, d: Math.PI / 2, l: Math.PI };
+      const BX = SOL.concat([
+        [0, -12, 1000, 0, "w", "#e6dccb"],
+        [0, 534, 1000, 546, "w", "#e6dccb"],
+        [-12, 0, 0, 534, "w", "#e6dccb"],
+        [1000, 0, 1012, 534, "w", "#e6dccb"],
+      ]);
+      const PAL = {
+        s: ["#c0503f", "#e0a43a", "#5b8f56", "#4a78a6", "#d9c9a6", "#8b5fa8"],
+        f: ["#ffffff", "#bcd7e6", "#e9f1f5"],
+        t: ["#d24a36", "#e8962c", "#6aa84f", "#e8d24a"],
+        p: ["#e6c1de", "#f4e0ef", "#b565a4"],
+      };
+      let FP = { on: 0, key: "" },
+        zb = new Float32Array(W),
+        lt = 0,
+        cx,
+        mx,
+        hc = {},
+        SG = [];
+      const SPD = 70,
+        ang = (a, b) => Math.atan2(Math.sin(b - a), Math.cos(b - a));
+      function at(sd) {
+        let k = 0;
+        for (; k < SG.length - 1 && sd > SG[k].e; k++);
+        const g = SG[k],
+          u = Math.min(1, Math.max(0, (sd - g.s) / g.l));
+        return {
+          x: g.a[0] + (g.b[0] - g.a[0]) * u,
+          y: g.a[1] + (g.b[1] - g.a[1]) * u,
+          k,
+          d: Math.atan2(g.b[1] - g.a[1], g.b[0] - g.a[0]),
+        };
+      }
+      function proj(px, py) {
+        const vx = px - FP.x,
+          vy = py - FP.y,
+          c = Math.cos(FP.a),
+          s = Math.sin(FP.a),
+          d = vx * c + vy * s;
+        if (d < 8) return null;
+        const x = W / 2 + ((-vx * s + vy * c) / d) * FL,
+          col = Math.round(x);
+        return col < 0 || col >= W ? null : { x, c: col, d };
+      }
+      function aisle() {
+        const p = S.dest;
+        return `<canvas id="fp" width="${W}" height="${H}" role="img" aria-label="${h(pn(p))}" style="position:absolute;inset:0;width:960px;height:540px"></canvas>
+<div style="position:absolute;left:24px;top:24px;background:#fff;border-radius:18px;padding:10px 16px;display:flex;gap:12px;align-items:center;box-shadow:0 2px 8px #3a103022">${PIN}<div><div style="font-size:17px;font-weight:700">${h(pn(p))}</div><div class="sm">${t("aisle", p.d + 1)} · ${h(D[p.d].s[L])}</div></div></div>
+<canvas id="mm" width="150" height="80" style="position:absolute;left:24px;top:92px;border-radius:12px;border:2px solid #fff;box-shadow:0 2px 8px #3a103040"></canvas>
+<div style="position:absolute;right:24px;top:24px;display:flex;gap:8px"><button class="v" style="min-height:48px" data-a="v" data-v="3d">${t("v3d")}</button><button class="v" style="min-height:48px" data-a="v" data-v="top">${t("vtop")}</button><button class="v a" style="min-height:48px" data-a="v" data-v="first_person">${t("vfp")}</button></div>
+<button id="ip" class="b" data-a="add" style="position:absolute;left:200px;bottom:112px;display:none;box-shadow:0 4px 14px #3a103040"></button>
+<div style="position:absolute;left:200px;bottom:24px;width:480px;background:#fff;border-radius:22px;padding:12px 18px;display:flex;gap:14px;align-items:center;box-shadow:0 4px 16px #3a10302e"><div id="ar" style="width:48px;height:48px;border-radius:50%;background:#B2198B;display:grid;place-items:center;flex:none"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path d="M13 3L21 21L13 16L5 21z" fill="#fff"/></svg></div><div style="flex:1;min-width:0"><div id="h1" style="font-size:19px;font-weight:700;color:#8a1269"></div><div id="h2" class="sm"></div><div style="height:6px;border-radius:3px;background:#e6b9d5;margin-top:6px"><div id="pg" style="height:6px;border-radius:3px;background:#B2198B;width:0"></div></div></div><button class="b" data-a="s" data-v="home">${t("end")}</button></div>
+<div style="position:absolute;left:24px;bottom:28px;display:flex;gap:8px"><button id="pp" class="i" data-a="pp"></button><button class="i" data-a="rp" aria-label="${t("rp")}">${I24('<path d="M4 12a8 8 0 108-8H8M8 4L5 8l3 4"/>')}</button><button id="sp" class="i" data-a="spd" aria-label="${t("sp")}" style="font-size:14px;font-weight:700"></button></div>`;
+      }
+      function setPP() {
+        hc.pp.innerHTML = I24(
+          FP.play && !FP.done
+            ? '<path d="M8 5v14M16 5v14"/>'
+            : '<path d="M7 4l12 8-12 8z"/>',
+        );
+        hc.pp.setAttribute("aria-label", t(FP.play && !FP.done ? "ps" : "pl"));
+        hc.sp.textContent = FP.sp + "×";
+      }
+      function fpReset() {
+        const g = SG[0];
+        FP.s = 0;
+        FP.done = 0;
+        FP.play = 1;
+        FP.k = 0;
+        FP.x = R.pts[0][0];
+        FP.y = R.pts[0][1];
+        if (g) FP.a = Math.atan2(g.b[1] - g.a[1], g.b[0] - g.a[0]);
+        setPP();
+      }
+      function fpPP() {
+        if (FP.done) fpReset();
+        else {
+          FP.play = !FP.play;
+          setPP();
+        }
+      }
+      function finish() {
+        FP.done = 1;
+        const e = R.pts[R.pts.length - 1];
+        FP.x = e[0];
+        FP.y = e[1];
+        setPP();
+        toast(t("tArr", pn(S.dest)));
+      }
+      function fpStart() {
+        const key = S.dest.id + S.pos;
+        SG = [];
+        let sd = 0;
+        for (let i = 1; i < R.pts.length; i++) {
+          const a = R.pts[i - 1],
+            b = R.pts[i],
+            l = Math.hypot(b[0] - a[0], b[1] - a[1]);
+          SG.push({ a, b, s: sd, e: sd + l, l });
+          sd += l;
+        }
+        if (FP.key != key) {
+          const g = SG[0];
+          FP = {
+            on: FP.on,
+            key,
+            s: 0,
+            k: 0,
+            tot: sd,
+            play: 1,
+            sp: 1,
+            done: 0,
+            x: S.pos[0],
+            y: S.pos[1],
+            a: g ? Math.atan2(g.b[1] - g.a[1], g.b[0] - g.a[0]) : -Math.PI / 2,
+          };
+        } else FP.tot = sd;
+        cx = $("#fp").getContext("2d");
+        mx = $("#mm").getContext("2d");
+        hc = {
+          h1: $("#h1"),
+          h2: $("#h2"),
+          ar: $("#ar"),
+          pg: $("#pg"),
+          ip: $("#ip"),
+          pp: $("#pp"),
+          sp: $("#sp"),
+        };
+        setPP();
+        if (!FP.on) {
+          FP.on = 1;
+          lt = 0;
+          requestAnimationFrame(loop);
+        }
+      }
+      function loop(ts) {
+        if (S.screen != "aisle") {
+          FP.on = 0;
+          return;
+        }
+        const dt = Math.min(0.05, (ts - lt) / 1000 || 0);
+        lt = ts;
+        if (FP.play && !FP.done) {
+          FP.s = Math.min(FP.tot, FP.s + SPD * FP.sp * dt);
+          if (FP.s >= FP.tot) finish();
+        }
+        if (SG.length && !FP.done) {
+          const q = at(FP.s),
+            n2 = at(Math.min(FP.tot, FP.s + 45));
+          FP.x = q.x;
+          FP.y = q.y;
+          FP.k = q.k;
+          FP.a += ang(FP.a, n2.d) * Math.min(1, 5 * dt);
+        } else if (FP.done)
+          FP.a += ang(FP.a, FACE[S.dest.f]) * Math.min(1, 4 * dt);
+        draw();
+        hud();
+        requestAnimationFrame(loop);
+      }
+      function draw() {
+        const hz = H / 2 + (FP.done ? 0 : Math.sin(FP.s * 0.2) * 1.4);
+        cx.fillStyle = "#eceae6";
+        cx.fillRect(0, 0, W, H);
+        const g = cx.createLinearGradient(0, hz, 0, H);
+        g.addColorStop(0, "#d8cfbf");
+        g.addColorStop(1, "#efe6d3");
+        cx.fillStyle = g;
+        cx.fillRect(0, hz, W, H);
+        for (let c = 0; c < W; c++) {
+          const ph = Math.atan((c - W / 2) / FL),
+            an = FP.a + ph,
+            dx = Math.cos(an) || 1e-9,
+            dy = Math.sin(an) || 1e-9;
+          let bt = 1e9,
+            bb = null,
+            bs = 0;
+          for (const b of BX) {
+            let t1 = (b[0] - FP.x) / dx,
+              t2 = (b[2] - FP.x) / dx;
+            if (t1 > t2) {
+              const q = t1;
+              t1 = t2;
+              t2 = q;
+            }
+            let s1 = (b[1] - FP.y) / dy,
+              s2 = (b[3] - FP.y) / dy;
+            if (s1 > s2) {
+              const q = s1;
+              s1 = s2;
+              s2 = q;
+            }
+            const tn = Math.max(t1, s1),
+              tf = Math.min(t2, s2);
+            if (tn < tf && tf > 0 && tn > 0.01 && tn < bt) {
+              bt = tn;
+              bb = b;
+              bs = t1 > s1 ? 0 : 1;
+            }
+          }
+          const d = bt * Math.cos(ph);
+          zb[c] = d;
+          if (!bb) continue;
+          const k = FL / d,
+            bot = hz + EY * k,
+            top = hz - (HT - EY) * k,
+            u = bs ? FP.x + dx * bt : FP.y + dy * bt,
+            hh = bot - top;
+          cx.fillStyle = bb[5];
+          cx.fillRect(c, top, 1, hh);
+          const pl = PAL[bb[4]];
+          if (pl)
+            for (let i = 0; i < 4; i++) {
+              cx.fillStyle =
+                pl[(Math.floor(u / 5) + i * 2 + (bb[0] >> 5)) % pl.length];
+              cx.fillRect(c, top + hh * (i * 0.25 + 0.05), 1, hh * 0.17);
+            }
+          cx.fillStyle = `rgba(0,0,0,${Math.min(0.5, d / 900) + (bs ? 0.1 : 0)})`;
+          cx.fillRect(c, top, 1, hh);
+        }
+        cx.fillStyle = "#B2198B";
+        for (let j = FP.k || 0; j < R.pts.length - 1; j++) {
+          const a = R.pts[j],
+            b = R.pts[j + 1],
+            ln = Math.hypot(b[0] - a[0], b[1] - a[1]);
+          for (let s = 0; s < ln; s += 10) {
+            const q = proj(
+              a[0] + ((b[0] - a[0]) * s) / ln,
+              a[1] + ((b[1] - a[1]) * s) / ln,
+            );
+            if (q && q.d < zb[q.c]) {
+              const r = Math.min(10, (1.5 * FL) / q.d);
+              cx.beginPath();
+              cx.ellipse(q.x, hz + (EY * FL) / q.d, r, r * 0.4, 0, 0, 7);
+              cx.fill();
+            }
+          }
+        }
+        const q = proj(S.dest.x, S.dest.y);
+        if (q && q.d < zb[q.c]) {
+          const k = FL / q.d,
+            bt = hz + EY * k,
+            tp = Math.max(-40, hz - 14 * k),
+            w = Math.min(3 * k, 14),
+            hy = Math.max(18, tp);
+          cx.fillStyle = "rgba(178,25,139,.8)";
+          cx.fillRect(q.x - w / 2, tp, w, bt - tp);
+          cx.beginPath();
+          cx.arc(q.x, hy, Math.min(5 * k, 16), 0, 7);
+          cx.fill();
+          cx.font = `700 ${Math.max(10, Math.min(18, 9 * k))}px Inter,sans-serif`;
+          cx.textAlign = "center";
+          cx.lineWidth = 3;
+          cx.strokeStyle = "#fff";
+          cx.fillStyle = "#8a1269";
+          const ty = Math.max(14, hy - Math.min(5 * k, 16) - 5);
+          cx.strokeText(pn(S.dest), q.x, ty);
+          cx.fillText(pn(S.dest), q.x, ty);
+        }
+        mx.fillStyle = "#faf8f4";
+        mx.fillRect(0, 0, 150, 80);
+        for (const b of FX) {
+          mx.fillStyle = b[5];
+          mx.fillRect(
+            b[0] * 0.15,
+            b[1] * 0.15,
+            (b[2] - b[0]) * 0.15,
+            (b[3] - b[1]) * 0.15,
+          );
+        }
+        mx.strokeStyle = "#B2198B";
+        mx.lineWidth = 2.5;
+        mx.beginPath();
+        R.pts.forEach((p, i) =>
+          i
+            ? mx.lineTo(p[0] * 0.15, p[1] * 0.15)
+            : mx.moveTo(p[0] * 0.15, p[1] * 0.15),
+        );
+        mx.stroke();
+        mx.save();
+        mx.translate(FP.x * 0.15, FP.y * 0.15);
+        mx.rotate(FP.a);
+        mx.fillStyle = "#3a1030";
+        mx.strokeStyle = "#fff";
+        mx.lineWidth = 1.2;
+        mx.beginPath();
+        mx.moveTo(6, 0);
+        mx.lineTo(-4, -4);
+        mx.lineTo(-4, 4);
+        mx.closePath();
+        mx.fill();
+        mx.stroke();
+        mx.restore();
+      }
+      function hud() {
+        let m1,
+          m2,
+          rot = 0,
+          pc = 100;
+        if (FP.done || !SG.length) {
+          m1 = t("arrive");
+          m2 = pn(S.dest);
+        } else {
+          const g = SG[FP.k],
+            left = Math.max(1, Math.round((g.e - FP.s) * MPP)),
+            nx = R.steps[FP.k + 1];
+          m1 = nx ? t("inm", left, t(nx.k)) : t("arrIn", left);
+          if (nx) {
+            const n2 = SG[FP.k + 1];
+            rot = ang(FP.a, Math.atan2(n2.b[1] - n2.a[1], n2.b[0] - n2.a[0]));
+          }
+          m2 = t("remain", Math.round((FP.tot - FP.s) * MPP), pn(S.dest));
+          pc = (FP.s / FP.tot) * 100;
+        }
+        if (hc.h1.textContent != m1) hc.h1.textContent = m1;
+        if (hc.h2.textContent != m2) hc.h2.textContent = m2;
+        hc.ar.style.transform = `rotate(${rot}rad)`;
+        hc.pg.style.width = pc + "%";
+        let np = null,
+          nd = 40;
+        for (const p of P) {
+          const d = Math.hypot(p.x - FP.x, p.y - FP.y);
+          if (d < nd) {
+            nd = d;
+            np = p;
+          }
+        }
+        if (np) {
+          const x = t("tapAdd", pn(np));
+          if (hc.ip.textContent != x) hc.ip.textContent = x;
+          hc.ip.dataset.id = np.id;
+          hc.ip.style.display = "block";
+        } else hc.ip.style.display = "none";
+      }
+      const CITY =
+          "Hà Nội|Hanoi|ハノイ|하노이|河内,TP. Hồ Chí Minh|Ho Chi Minh City|ホーチミン市|호치민시|胡志明市,Bình Dương|Binh Duong|ビンズオン|빈즈엉|平阳,Hải Phòng|Hai Phong|ハイフォン|하이퐁|海防,Hưng Yên|Hung Yen|フンイエン|흥옌|兴安,Huế|Hue|フエ|후에|顺化,Tân An|Tan An|タンアン|떤안|新安,Đà Nẵng|Da Nang|ダナン|다낭|岘港,Quảng Ninh|Quang Ninh|クアンニン|꽝닌|广宁,Thanh Hóa|Thanh Hoa|タインホア|타인호아|清化".split(
+            ",",
+          ),
+        TYP =
+          "Trung tâm Bách hoá Tổng hợp & Siêu thị|Shopping Center & Supermarket|ショッピングセンター＆スーパー|종합 쇼핑센터 & 슈퍼마켓|综合购物中心及超市,Siêu thị Tinh gọn|Compact Supermarket|コンパクトスーパー|컴팩트 슈퍼마켓|精简超市,AEON MaxValu|AEON MaxValu|AEON MaxValu|AEON MaxValu|AEON MaxValu".split(
+            ",",
+          );
+      const STO = [
+        [
+          1,
+          0,
+          "AEON Tân Phú Celadon",
+          "Số 30, đường Tân Thắng, Phường Tân Sơn Nhì",
+        ],
+        [
+          1,
+          1,
+          "AEON Nguyễn Văn Linh",
+          "BF-01, Tầng Hầm 1, 101 Tôn Dật Tiên, Phường Tân Mỹ",
+        ],
+        [1, 0, "AEON Tạ Quang Bửu", "547-549 Tạ Quang Bửu, Phường Chánh Hưng"],
+        [1, 0, "AEON Bình Tân", "Số 1 đường số 17A, Phường An Lạc"],
+        [0, 0, "AEON Long Biên", "Số 27, đường Cổ Linh, Phường Long Biên"],
+        [0, 0, "AEON Hà Đông", "Aeonmall Hà Đông, Phường Dương Nội"],
+        [0, 1, "AEON The Nine", "GP Tower, 9 Phạm Văn Đồng, Phường Phú Diễn"],
+        [0, 0, "AEON Xuân Thuỷ", "122-124 Xuân Thủy, Phường Cầu Giấy"],
+        [
+          0,
+          2,
+          "AEON MaxValu Five Star Garden",
+          "Tầng 1, 2 Kim Giang, Phường Khương Đình",
+        ],
+        [0, 2, "AEON MaxValu Symphony", "Vinhomes Symphony, Phường Phúc Lợi"],
+        [0, 2, "AEON MaxValu Zen Park", "Vinhomes Ocean Park, Xã Gia Lâm"],
+        [0, 2, "AEON MaxValu The Five", "343-345 Đội Cấn, Phường Ngọc Hà"],
+        [
+          0,
+          2,
+          "AEON MaxValu Thăng Long No.1",
+          "Viglacera Tower, 1 Đại lộ Thăng Long, Phường Đại Mỗ",
+        ],
+        [
+          0,
+          2,
+          "AEON MaxValu Riverside",
+          "349 Vũ Tông Phan, Phường Khương Đình",
+        ],
+        [
+          0,
+          2,
+          "AEON MaxValu Ocean Park",
+          "Tòa U26, Vinhomes Ocean Park, Xã Gia Lâm",
+        ],
+        [
+          0,
+          2,
+          "AEON MaxValu Nam Trung Yên",
+          "Khu tái định cư Nam Trung Yên, Phường Yên Hòa",
+        ],
+        [0, 2, "AEON MaxValu Lotus", "Khu Đoàn Ngoại Giao, Bắc Từ Liêm"],
+        [0, 2, "AEON MaxValu Lĩnh Nam", "87 Lĩnh Nam, Phường Vĩnh Tuy"],
+        [0, 2, "AEON MaxValu Linh Đàm", "Đường Văn Tân, Phường Hoàng Liệt"],
+        [0, 2, "AEON MaxValu La Casta", "La Casta Tower, Phường Kiến Hưng"],
+        [0, 2, "AEON MaxValu Kosmo", "Kosmo Tây Hồ, Phường Xuân Đỉnh"],
+        [
+          0,
+          2,
+          "AEON MaxValu Hyundai",
+          "TTTM Hyundai Hillsmall, Phường Hà Đông",
+        ],
+        [0, 2, "AEON MaxValu Horizon", "Khu Đoàn Ngoại Giao, Phường Xuân Đỉnh"],
+        [0, 2, "AEON MaxValu Florence", "Trần Hữu Dục, Phường Cầu Diễn"],
+        [2, 1, "AEON Bình Dương New City", "Tầng 1, Lô C19, Phường Bình Dương"],
+        [
+          2,
+          0,
+          "AEON Bình Dương Canary",
+          "Số 1, Đại lộ Bình Dương, Phường Thuận Giao",
+        ],
+        [
+          2,
+          1,
+          "AEON Midori Park",
+          "Khu đô thị mới Bình Dương, Phường Bình Dương",
+        ],
+        [
+          3,
+          0,
+          "AEON Hải Phòng Lê Chân",
+          "Số 10 Võ Nguyên Giáp, Phường An Biên",
+        ],
+        [3, 0, "AEON Hải Dương", "Đại lộ Võ Văn Kiệt, Phường Thạch Khôi"],
+        [4, 0, "AEON Văn Giang", "Vicom Mega Mall Ocean City, Xã Nghĩa Trụ"],
+        [
+          4,
+          2,
+          "AEON MaxValu Sky Oasis",
+          "Tòa H1, Haven Park, Ecopark, Xã Phụng Công",
+        ],
+        [
+          4,
+          2,
+          "AEON MaxValu Ecopark Rừng Cọ",
+          "Cụm nhà 5, Ecopark, Xã Phụng Công",
+        ],
+        [4, 2, "AEON MaxValu Ecopark", "Tháp A3 (Sky2), Ecopark, Xuân Quan"],
+        [4, 2, "AEON MaxValu Westbay", "Tòa A, Ecopark, Xã Phụng Công"],
+        [5, 0, "AEON Huế", "Số 08 Võ Nguyên Giáp, Phường An Cựu"],
+        [
+          7,
+          0,
+          "AEON Đà Nẵng Thanh Khê",
+          "Số 46 Điện Biên Phủ, Phường Thanh Khê",
+        ],
+        [8, 0, "AEON Hạ Long", "Số 288 Cái Lân, Phường Bãi Cháy"],
+        [
+          9,
+          0,
+          "AEON Thanh Hoá",
+          "AEON MALL Thanh Hóa, Lô 16, Phường Quảng Phú",
+        ],
+      ];
+      function stores() {
+        const ls = STO.filter(
+            (s) => (S.fc < 0 || s[0] == S.fc) && (S.ft < 0 || s[1] == S.ft),
+          ),
+          op = (a, sel, all) =>
+            `<option value="-1">${all}</option>` +
+            a
+              .map(
+                (x, i) =>
+                  `<option value="${i}"${sel == i ? " selected" : ""}>${h(x.split("|")[L])}</option>`,
+              )
+              .join(""),
+          gs = [1, 0, 2, 3, 4, 5, 6, 7, 8, 9]
+            .map((c) => [c, ls.filter((s) => s[0] == c)])
+            .filter((g) => g[1].length);
+        return `<div style="flex:1;min-width:0;display:flex;flex-direction:column"><div class="rw" style="height:68px;padding:0 24px;background:#fff;border-bottom:1px solid #e6b9d5;flex:none;gap:14px">${logo(52)}<div style="flex:1;font-size:20px;font-weight:700">${t("stT")}</div><button class="g sb" data-a="so" style="display:flex;gap:6px;align-items:center">${SOUT}${t("so")}</button><button class="i" data-a="s" data-v="home" aria-label="Home">${HOME}</button></div>
+<div class="rw" style="padding:12px 24px;flex:none"><label for="f1" style="position:absolute;left:-9999px">${t("stAllC")}</label><select id="f1" class="fi" style="flex:1">${op(CITY, S.fc, t("stAllC"))}</select><label for="f2" style="position:absolute;left:-9999px">${t("stAllT")}</label><select id="f2" class="fi" style="flex:1">${op(TYP, S.ft, t("stAllT"))}</select><button class="b" data-a="fs">${t("stSrch")}</button></div>
+<div style="flex:1;min-height:0;overflow:auto;padding:0 24px 96px">${gs.length ? gs.map(([c, l]) => `<div style="font-size:16px;font-weight:700;margin:10px 0 8px">${h(CITY[c].split("|")[L])} <span class="sm">· ${t("stCt", l.length)}</span></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">${l.map((s) => `<div class="cd" style="padding:0;overflow:hidden"><div style="height:60px;background:linear-gradient(135deg,#e6b9d5,#f9eef5);display:grid;place-items:center">${STORE}</div><div style="padding:10px 12px;display:flex;flex-direction:column;gap:4px"><b style="font-size:14px">${h(s[2])}</b><span style="font-size:11px;font-weight:600;color:#8a1269">${h(TYP[s[1]].split("|")[L])}</span><span class="sm" style="font-size:12px">${h(s[3])}</span></div></div>`).join("")}</div>`).join("") : `<p>${t("stNo")}</p>`}</div></div>`;
+      }
+      function cart() {
+        const x = tot(),
+          k = Object.entries(S.cart);
+        return `<div style="flex:1;min-width:0;padding:24px 28px;display:flex;flex-direction:column;gap:10px"><div style="display:flex;justify-content:space-between;align-items:center;height:48px;flex:none"><div style="font-size:22px;font-weight:700">${t("cart")} <span class="sm">· ${t("items", n())}</span></div><button class="i" data-a="s" data-v="home" aria-label="Home">${HOME}</button></div><div style="flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:10px">${
+          k.length
+            ? k
+                .map(([id, q]) => {
+                  const p = byId(id);
+                  return `<div class="cd rw" style="height:68px;flex:none"><span class="o" style="background:${BG[p.d]}">${ic(p.d)}</span><div style="flex:1;min-width:0"><div style="font-weight:600;font-size:16px">${h(pn(p))}</div><div class="sm">${t("aisle", p.d + 1)}</div></div><button class="g" style="width:44px;padding:0" data-a="q" data-id="${id}" data-d="-1" aria-label="-">&minus;</button><span style="width:20px;text-align:center;font-weight:700">${q}</span><button class="g" style="width:44px;padding:0" data-a="q" data-id="${id}" data-d="1" aria-label="+">+</button><span style="width:84px;text-align:right;font-weight:700">${fmt(p.price * q)}</span></div>`;
+                })
+                .join("")
+            : `<p>${t("empty")}</p>`
+        }</div></div>
+<div style="width:300px;background:#B2198B;color:#fff;padding:28px 28px 100px;display:flex;flex-direction:column;gap:14px"><div style="font-size:20px;font-weight:700">${t("cart")}</div><div style="display:flex;justify-content:space-between"><span>${t("sub")}</span><span>${fmt(x.subtotal)}</span></div><div style="display:flex;justify-content:space-between"><span>${t("save")}</span><span>&minus;${fmt(x.savings)}</span></div><div style="border-top:1px solid #e6b9d5;padding-top:14px"><div style="font-size:14px;color:#f9eef5">${t("total")}</div><div style="font-size:32px;font-weight:700">${fmt(x.total)}</div></div><div style="flex:1"></div><button class="g" style="min-height:56px;font-size:17px" data-a="pay">${t("checkout")}</button><button data-a="s" data-v="home" style="min-height:48px;border-radius:14px;border:2px solid #e6b9d5;background:transparent;color:#fff;font-weight:600;font-size:15px">${t("keep")}</button></div>`;
+      }
+      const modal = () =>
+        `<div style="position:absolute;inset:0;background:#3a1030aa;display:grid;place-items:center;z-index:4;animation:fade .2s ease-out"><div role="dialog" aria-modal="true" style="animation:pop .26s cubic-bezier(.2,.8,.2,1);background:#fff;border-radius:22px;padding:28px;width:380px;display:flex;flex-direction:column;gap:14px;text-align:center;align-items:center">${S.modal == "choose" ? `<div style="font-size:20px;font-weight:700">${t("payQ")}</div><div style="font-size:26px;font-weight:700;color:#B2198B">${fmt(tot().total)}</div><button class="t" data-a="pm" data-v="cart" style="width:100%;height:auto;flex-direction:row;align-items:center"><span class="o">${I24('<path d="M3 4h3l2 11h10l2-8H7"/><circle cx="10" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/>')}</span><span>${t("payCart")}<br><span class="sm">${t("payCartS")}</span></span></button><button class="t" data-a="pm" data-v="counter" style="width:100%;height:auto;flex-direction:row;align-items:center"><span class="o">${I24('<rect x="3" y="9" width="18" height="10" rx="2"/><path d="M7 9V5h10v4M8 14h8"/>')}</span><span>${t("payCnt")}<br><span class="sm">${t("payCntS")}</span></span></button><button class="g" style="width:100%" data-a="back">${t("back")}</button>` : S.modal == "counter" ? `<div style="font-size:20px;font-weight:700">${t("cntT")}</div><div style="font-size:40px;font-weight:700;color:#B2198B;letter-spacing:2px">${S.code}</div><div class="sm">${t("cntS")}</div><div style="font-size:22px;font-weight:700">${fmt(tot().total)}</div><button class="b" style="width:100%" data-a="done">${t("done")}</button>` : S.modal == "cart" ? `<div style="font-size:20px;font-weight:700">${t("payT")}</div><div style="font-size:34px;font-weight:700;color:#B2198B">${fmt(tot().total)}</div><button class="b" style="width:100%;min-height:56px" data-a="done">${t("payNow")}</button><button class="g" style="width:100%" data-a="back">${t("back")}</button>` : `${chick(72)}<div style="font-size:22px;font-weight:700">${t("thanks")}</div><div class="sm">${t("rcpt")}</div><button class="b" style="width:100%" data-a="end">${t("newT")}</button>`}</div></div>`;
+      const ORD = { login: 0, home: 1, stores: 2, cart: 2, map: 2, aisle: 3 },
+        RM = matchMedia("(prefers-reduced-motion:reduce)").matches;
+      let PS = null,
+        PV = null;
+      function render() {
+        R = route();
+        const sc = $("#sc");
+        sc.innerHTML =
+          { login, home, map, aisle, cart, stores }[S.screen]() +
+          (S.modal ? modal() : "");
+        if (S.screen == "home") rs();
+        if (S.screen == "aisle") fpStart();
+        if (!RM) {
+          if (PS && PS != S.screen) {
+            const d = ORD[S.screen] >= ORD[PS] ? 1 : -1;
+            sc.animate(
+              [
+                {
+                  opacity: 0,
+                  transform: `translateX(${30 * d}px) scale(.985)`,
+                },
+                { opacity: 1, transform: "none" },
+              ],
+              { duration: 360, easing: "cubic-bezier(.2,.7,.2,1)" },
+            );
+          } else if (S.screen == "map" && PV && PV != S.view) {
+            const f = (v) => (v == "3d" ? TILT : "none");
+            $("#mp").animate([{ transform: f(PV) }, { transform: f(S.view) }], {
+              duration: 600,
+              easing: "ease-in-out",
+            });
+          }
+        }
+        PS = S.screen;
+        PV = S.view;
+      }
+      /* ---- Pip: the assistant / brain ---- */
+      const mk = (name, description, props, req, fn) => ({
+        name,
+        description,
+        inputSchema: { type: "object", properties: props, required: req },
+        execute: fn,
+      });
+      const pid = {
+        product_id: { type: "string", description: "id from the catalog" },
+      };
+      const tools = [
+        mk(
+          "find_products",
+          "Search products by name or department (any language)",
+          { query: { type: "string" } },
+          ["query"],
+          (i) => A.find(i.query),
+        ),
+        mk(
+          "navigate_to",
+          "Guide the shopper to a product: opens the map with the route",
+          pid,
+          ["product_id"],
+          (i) => A.go(i.product_id),
+        ),
+        mk(
+          "add_to_cart",
+          "Add a product to the cart",
+          { ...pid, qty: { type: "number" } },
+          ["product_id"],
+          (i) => A.add(i.product_id, i.qty || 1),
+        ),
+        mk(
+          "remove_from_cart",
+          "Remove a product from the cart completely",
+          pid,
+          ["product_id"],
+          (i) => A.add(i.product_id, -99),
+        ),
+        mk(
+          "show_screen",
+          "Open a screen",
+          {
+            screen: {
+              type: "string",
+              enum: ["home", "map", "aisle", "cart", "stores"],
+            },
+          },
+          ["screen"],
+          (i) => A.screen(i.screen),
+        ),
+        mk(
+          "set_map_view",
+          "Change the guidance view (first_person is the automatic guided walk-through)",
+          { view: { type: "string", enum: ["top", "3d", "first_person"] } },
+          ["view"],
+          (i) => A.view(i.view),
+        ),
+        mk(
+          "get_cart",
+          "Read the cart, subtotal, savings and total",
+          {},
+          [],
+          () => A.cart(),
+        ),
+        mk(
+          "checkout",
+          "Open checkout; the shopper chooses to pay at the cart or at a checkout counter (optionally preselect with method)",
+          { method: { type: "string", enum: ["cart", "counter"] } },
+          [],
+          (i) => A.pay(i.method),
+        ),
+      ];
+      const ctx = () =>
+        "You are Pip, the friendly chick assistant and the brain of AIEON, a supermarket smart cart app. You control the app only through your tools (find_products, navigate_to, add_to_cart, remove_from_cart, show_screen, set_map_view, get_cart, checkout) and must never claim an action you did not perform. Prices are in Vietnamese dong. Always reply in " +
+        LE[L] +
+        ", in at most two short plain-text sentences.\nCatalog: " +
+        P.map(
+          (p) =>
+            `${p.id}=${p.n[1]} (${D[p.d].n[1]}, aisle ${p.d + 1}, ${p.price})`,
+        ).join("; ") +
+        "\nState: " +
+        JSON.stringify({
+          screen: S.screen,
+          destination: S.dest.n[1],
+          route_m: R.m,
+          member: !!(S.user && S.user.member),
+          cart: A.cart(),
+        }) +
+        "\nShopper: ";
+      function local(q) {
+        const s = nz(q),
+          m = find(q)[0],
+          x = (r) => r.test(s);
+        if (S.screen == "login") return t("hiS");
+        if (x(/check ?out|\bpay\b|thanh toan|お会計|支払|결제|结账|支付/)) {
+          A.pay();
+          return t("lPay", fmt(tot().total));
+        }
+        if (x(/remove|delete|xoa|bo ra|削除|取り消|빼|삭제|移除|删除/) && m) {
+          A.add(m.id, -99);
+          return t("lRem", pn(m));
+        }
+        if (
+          x(/\badd\b|\bbuy\b|put|\bthem\b|追加|入れ|담|넣|加入|添加|买/) &&
+          m
+        ) {
+          A.add(m.id, 1);
+          return t("lAdd", pn(m));
+        }
+        if (x(/cart|basket|total|gio hang|カート|장바구니|购物车|购物篮/)) {
+          A.screen("cart");
+          return t("lCart", n(), fmt(tot().total));
+        }
+        if (
+          x(
+            /first.?person|aisle view|goc nhin thu nhat|一人称|1인칭|第一人称|joystick/,
+          )
+        ) {
+          A.view("first_person");
+          return t("lFp");
+        }
+        if (x(/3d/)) {
+          A.view("3d");
+          return t("l3d");
+        }
+        if (
+          x(
+            /top view|top-down|\bmap\b|ban do|tu tren|真上|マップ|지도|위에서|俯视|地图/,
+          )
+        ) {
+          A.view("top");
+          return t("lTop");
+        }
+        if (x(/\bstores?\b|cua hang|店舗|매장|门店/)) {
+          A.screen("stores");
+          return t("stFind");
+        }
+        if (x(/\bhome\b|menu|\bback\b|trang chu|ホーム|홈|主页/)) {
+          A.screen("home");
+          return t("lHome");
+        }
+        if (m) {
+          const r = A.go(m.id);
+          return t("lGo", pn(m), r.aisle, r.distance_m, r.minutes);
+        }
+        return t("lNo");
+      }
+      const Hh = [];
+      let g0;
+      function say(c, x) {
+        const e = document.createElement("div");
+        e.className = "bm " + c;
+        e.textContent = x;
+        const m = $("#ms");
+        m.appendChild(e);
+        m.scrollTop = m.scrollHeight;
+        return e;
+      }
+      async function ask(q) {
+        $("#pn").hidden = false;
+        say("u", q);
+        const b = say("a", "…");
+        Hh.push({ role: "user", content: q });
+        let r;
+        try {
+          if (!AI) throw 0;
+          const msgs = Hh.slice(-7).map((x) => ({ ...x }));
+          msgs[msgs.length - 1].content = ctx() + q;
+          const o = await AI(msgs, {
+            tools,
+            cache: false,
+            modelTier: "quick",
+            onText: ({ text }) => {
+              if (text) b.textContent = text;
+            },
+          });
+          r = (o.text || "").trim() || "Done!";
+        } catch (e) {
+          if (e && e.code == "not_granted") AI = null;
+          r = local(q);
+        }
+        b.textContent = r;
+        Hh.push({ role: "assistant", content: r });
+        $("#ms").scrollTop = 1e5;
+      }
+      function send() {
+        const i = $("#ci"),
+          x = i.value.trim();
+        if (x) {
+          i.value = "";
+          ask(x);
+        }
+      }
+      function uai() {
+        $("#ps").textContent = t("pipSub");
+        $("#ci").placeholder = t("pipPh");
+        $("#sd").textContent = t("send");
+        $("#xc").setAttribute("aria-label", t("cls"));
+        $("#fb").setAttribute("aria-label", t("opn"));
+        $("#cp").innerHTML = [1, 2, 3, 4]
+          .map(
+            (i) => `<button data-a="chip" data-i="${i}">${t("c" + i)}</button>`,
+          )
+          .join("");
+        if (!Hh.length && g0) g0.textContent = t("pipHi");
+      }
+      /* ---- wiring ---- */
+      function signin() {
+        const id = $("#lid").value.trim(),
+          pin = $("#lpin").value.trim();
+        if (!/^\d{9,11}$/.test(id) || pin.length < 4) {
+          $("#er").textContent = t("bad");
+          return;
+        }
+        S.user = { id, member: 1 };
+        S.screen = "home";
+        render();
+      }
+      document.addEventListener("click", (e) => {
+        const el = e.target.closest("[data-a]");
+        if (!el) return;
+        const a = el.dataset.a,
+          id = el.dataset.id,
+          v = el.dataset.v;
+        if (a == "s") A.screen(v);
+        else if (a == "v") A.view(v);
+        else if (a == "go") A.go(id);
+        else if (a == "add") A.add(id, 1);
+        else if (a == "q") A.add(id, +el.dataset.d);
+        else if (a == "in") signin();
+        else if (a == "gst") {
+          S.user = { guest: 1 };
+          S.screen = "home";
+          render();
+        } else if (a == "so") signout();
+        else if (a == "pp") fpPP();
+        else if (a == "rp") fpReset();
+        else if (a == "spd") {
+          FP.sp = FP.sp == 1 ? 2 : 1;
+          setPP();
+        } else if (a == "fpw") toast(t("fpwM"));
+        else if (a == "fs") {
+          S.fc = +$("#f1").value;
+          S.ft = +$("#f2").value;
+          render();
+        } else if (a == "pm") A.pay(v);
+        else if (a == "dept") {
+          S.q = v;
+          $("#q").value = v;
+          rs();
+        } else if (a == "clr") {
+          S.q = "";
+          $("#q").value = "";
+          rs();
+        } else if (a == "pay") A.pay();
+        else if (a == "done") {
+          S.modal = "done";
+          render();
+        } else if (a == "end") {
+          S.modal = null;
+          S.cart = {};
+          S.pos = [180, 495];
+          S.screen = "home";
+          render();
+        } else if (a == "back") {
+          S.modal = null;
+          render();
+        } else if (a == "arr") A.arrive();
+        else if (a == "ai") $("#pn").hidden = !$("#pn").hidden;
+        else if (a == "chip") ask(t("c" + el.dataset.i));
+        else if (a == "send") send();
+      });
+      document.addEventListener("input", (e) => {
+        if (e.target.id == "q") {
+          S.q = e.target.value;
+          rs();
+        }
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key == "Enter" && (e.target.id == "lid" || e.target.id == "lpin"))
+          signin();
+      });
+      $("#lg").innerHTML = LN.map(
+        (x, i) => `<option value="${i}">${x}</option>`,
+      ).join("");
+      $("#lg").value = L;
+      $("#lg").onchange = (e) => {
+        L = +e.target.value;
+        document.documentElement.lang = LG[L];
+        render();
+        uai();
+      };
+      $("#ai").innerHTML =
+        `<div class="pn" id="pn" hidden><div class="hd">${chick(36)}<div style="flex:1"><div style="font-weight:700">Pip</div><div id="ps" style="font-size:12px"></div></div><button id="xc" class="i" style="width:44px;height:44px" data-a="ai">&times;</button></div><div class="ms" id="ms" aria-live="polite"></div><div class="ch" id="cp"></div><div class="in"><label for="ci" style="position:absolute;left:-9999px">Pip</label><input id="ci" class="fi" autocomplete="off"><button id="sd" class="b" style="min-height:44px;padding:0 16px" data-a="send"></button></div></div><button id="fb" class="fab" data-a="ai">${chick(44)}</button>`;
+      $("#ci").addEventListener("keydown", (e) => {
+        if (e.key == "Enter") send();
+      });
+      g0 = say("a", "");
+      uai();
+      /* idle session: warning after 3:00, automatic sign-out after 3:30 without any interaction */
+      const IDLE_WARN = 180e3,
+        IDLE_OUT = 210e3;
+      let act = Date.now();
+      function wn(on, sec) {
+        const e = $("#wn");
+        if (!on) {
+          e.style.display = "none";
+          return;
+        }
+        e.style.display = "flex";
+        e.innerHTML = `<div><b>${t("idleW")}</b><div class="sm">${t("idleN", sec)}</div></div><button class="b" data-a="stay">${t("idleS")}</button>`;
+      }
+      function signout(auto) {
+        S.user = null;
+        S.screen = "login";
+        S.modal = null;
+        S.q = "";
+        render();
+        wn(0);
+        if (auto) toast(t("idleOut"));
+      }
+      ["pointerdown", "pointermove", "keydown", "touchstart", "wheel"].forEach(
+        (ev) =>
+          addEventListener(
+            ev,
+            () => {
+              act = Date.now();
+              wn(0);
+            },
+            { passive: true },
+          ),
+      );
+      setInterval(() => {
+        if (S.screen == "login") {
+          wn(0);
+          return;
+        }
+        const i = Date.now() - act;
+        if (i >= IDLE_OUT) signout(1);
+        else if (i >= IDLE_WARN) wn(1, Math.ceil((IDLE_OUT - i) / 1000));
+      }, 1000);
+      const fit = () => {
+        $("#st").style.transform =
+          `scale(${Math.min(innerWidth / 960, innerHeight / 540)})`;
+      };
+      addEventListener("resize", fit);
+      fit();
+      try {
+        window.claude &&
+          claude
+            .use("sample")
+            .then((s) => {
+              AI = s;
+            })
+            .catch(() => {});
+      } catch (e) {}
+      render();
+    </script>
+  </body>
+</html>
